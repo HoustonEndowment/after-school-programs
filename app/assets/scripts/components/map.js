@@ -34,13 +34,14 @@ const Map = React.createClass({
   _addData (id, scale, filter) {
     this._map.addSource(id, {
       type: 'vector',
-      url: 'mapbox://nbumbarg.avmqf4ze'
+      url: 'mapbox://nbumbarg.9aw3gowo'
     })
+    console.log(id)
     this._map.addLayer({
       'id': id,
       'type': 'fill',
-      'source': 'districts',
-      'source-layer': 'districts-2r7p1g',
+      'source': id,
+      'source-layer': 'SCHOOL_DISTRICT-1i1tkc',
       'interactive': true,
       'maxzoom': 18,
       'filter': filter,
