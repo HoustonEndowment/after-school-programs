@@ -36,7 +36,6 @@ const Map = React.createClass({
       type: 'vector',
       url: 'mapbox://nbumbarg.9aw3gowo'
     })
-    console.log(id)
     this._map.addLayer({
       'id': id,
       'type': 'fill',
@@ -54,6 +53,16 @@ const Map = React.createClass({
         'fill-outline-color': 'white'
       }
     })
+
+    const source = this._map.querySourceFeatures('districts', {
+      sourceLayer: 'SCHOOL_DISTRICT-1i1tkc'
+    })
+    console.log(source)
+
+    const rendered = this._map.queryRenderedFeatures({
+      layers: ['districts']
+    })
+    console.log(rendered)
   },
 
   shouldComponentUpdate: function () {

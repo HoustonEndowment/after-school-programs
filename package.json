@@ -76,8 +76,9 @@
     "watchify": "^3.7.0"
   },
   "dependencies": {
-    "classnames": "^2.2.5",
+    "chart.js": "^2.2.1",
     "chroma-js": "^1.2.1",
+    "classnames": "^2.2.5",
     "lodash": "^4.14.2",
     "lodash.defaultsdeep": "^4.3.5",
     "mapbox-gl": "^0.21.0",
