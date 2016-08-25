@@ -1,19 +1,35 @@
+// Note: I'm experiencing a bug where I can't seem to find a way to add the
+// necessary top-margin to the legend labels in this file. The label spacing,
+// as well as the coloring of the legend, is defined inline in the file
+// called app/assets/scripts/components/legend.js.
+
+.legend {
+  float: left;
+  width: 100%;
+  padding-bottom: 13px;
+  border-bottom: 1px solid rgb(151, 151, 151);
+}
+
 .legend .legend-title {
-  text-align: left;
-  margin: 10px 8px;
-  font-weight: bold;
-  font-size: 16px;
-  width: 95%;
-  margin-left: 5%;
+  margin: 25px 8px 15px 8px;
+  width: 85%;
+  margin-left: 7.5%;
+  h3 {
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+  h4 {
+    font-size: 13px;
+    font-weight: 400;
+  }
 }
 
 .legend .legend-scale ul {
-  margin: 0;
-  padding: 0;
   float: left;
   list-style: none;
-  width: 90%;
-  margin: 0 5% 0 5%;
+  width: 85%;
+  margin-left: 7.5%;
 }
 
 .legend .legend-scale ul li {
@@ -21,29 +37,19 @@
   float: left;
   width: 20%;
   margin-bottom: 6px;
-  text-align: center;
-  font-size: 80%;
   list-style: none;
 }
 
 .legend ul.legend-labels li {
-  margin-top: 2px;
-  font-size: 9px;
+  font-size: 10px;
+  &:last-child {
+    text-align: right;
+  }
 }
 
 .legend ul.legend-labels li span {
   display: block;
   float: left;
-  height: 16px;
+  height: 17px;
   width: 100%;
-}
-
-.legend .legend-source {
-  font-size: 70%;
-  color: #999;
-  clear: both;
-}
-
-.legend a {
-  color: #777;
 }
