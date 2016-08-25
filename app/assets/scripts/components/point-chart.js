@@ -15,36 +15,76 @@ const PointChart = React.createClass({
         {
           data: [
             {
-              x: 20,
-              y: 30,
+              x: 21,
+              y: 7,
               r: 10
             }
           ],
-          backgroundColor: '#FF6384',
-          hoverBackgroundColor: '#FF6384'
+          borderColor: 'rgb(151, 151, 151)',
+          backgroundColor: 'rgb(216, 216, 216)',
+          hoverBackgroundColor: 'rgb(151, 191, 238)'
+        },
+        {
+          data: [
+            {
+              x: 15,
+              y: 14,
+              r: 10
+            }
+          ],
+          borderColor: 'rgb(151, 151, 151)',
+          backgroundColor: 'rgb(216, 216, 216)',
+          hoverBackgroundColor: 'rgb(151, 191, 238)'
         },
         {
           data: [
             {
               x: 40,
-              y: 10,
+              y: 24,
               r: 10
             }
           ],
-          backgroundColor: '#00ff00',
-          hoverBackgroundColor: '#00ff00'
+          borderColor: 'rgb(151, 151, 151)',
+          backgroundColor: 'rgb(216, 216, 216)',
+          hoverBackgroundColor: 'rgb(151, 191, 238)'
         }]
     }
 
     var options = {
-      elements: {
-        points: {
-          borderWidth: 1,
-          borderColor: 'rgb(0, 0, 0)'
-        }
+      maintainAspectRatio: false,
+      title: {
+        display: true,
+        text: 'Supply and Demand by Zipcode',
+        fontSize: 16,
+        padding: 40,
+        fullWidth: true
       },
       legend: {
         display: false
+      },
+      scales: {
+        xAxes: [{
+          ticks: {
+            beginAtZero: true,
+            max: 50,
+            fontColor: 'rgb(175,175,0175)'
+          },
+          gridLines: {
+            color: 'rgb(151, 151, 151)',
+            display: false
+          }
+        }],
+        yAxes: [{
+          ticks: {
+            beginAtZero: true,
+            max: 35,
+            fontColor: 'rgb(175,175,0175)'
+          },
+          gridLines: {
+            color: 'rgb(151, 151, 151)',
+            display: false
+          }
+        }]
       }
     }
 
@@ -58,13 +98,23 @@ const PointChart = React.createClass({
   },
 
   componentWillReceiveProps: function (nextProps) {
-    this.myBubbleChart.config.data.datasets[0].backgroundColor = 'yellow'
+    this.myBubbleChart.config.data.datasets[0].backgroundColor = 'rgb(151, 191, 238)'
     this.myBubbleChart.update()
   },
 
   render: function () {
     return (
-      <canvas id='chart' height='275'></canvas>
+      <div id='main-chart-container'>
+        <div className='chart-students-label'>
+          Students
+        </div>
+        <div className='chart-slots-label'>
+          Available Slots in Programs
+        </div>
+        <div id='chart-container'>
+          <canvas id='chart'></canvas>
+        </div>
+      </div>
     )
   }
 })

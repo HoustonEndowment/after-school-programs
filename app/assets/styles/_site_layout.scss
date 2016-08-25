@@ -62,7 +62,7 @@ body {
 .content {
   position: relative;
   width: 100%;
-  height: 600px;
+  height: 700px;
 }
 
 #map {
@@ -79,9 +79,4 @@ body {
   height: 100%;
   float: left;
   border-right: 1px solid rgb(151, 151, 151);
-}
-
-#chart {
-  position: absolute;
-  bottom: 0;
 }

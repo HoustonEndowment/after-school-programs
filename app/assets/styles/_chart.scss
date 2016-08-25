@@ -1,0 +1,40 @@
+// Adjust the chart height and distance from bottom using this variable, in
+// order to maintain the relative position of the labels. You will need to
+// force the chart to redraw by manually refreshing the page.
+$base-height: 600px;
+$bottom: 40px;
+
+#main-chart-container {
+  position: absolute;
+  bottom: $bottom;
+  left: 0;
+  width: 325px;
+  height: $base-height;
+}
+
+#chart-container {
+  position: absolute;
+  bottom: 30px;
+  width: 275px;
+  height: $base-height - ($base-height / 5);
+  margin-left: 17px;
+}
+
+.chart-students-label {
+  font-weight: 500;
+  color: rgb(131, 131, 131);
+  position: absolute;
+  top: $base-height / 3.65;
+  left: 27px;
+  font-size: 13px;
+}
+
+.chart-slots-label {
+  text-align: center;
+  font-weight: 500;
+  color: rgb(131, 131, 131);
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  font-size: 13px;
+}
