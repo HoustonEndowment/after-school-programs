@@ -1,6 +1,8 @@
 // Adjust the chart height and distance from bottom using this variable, in
-// order to maintain the relative position of the labels. You will need to
-// force the chart to redraw by manually refreshing the page.
+// order to maintain the relative position of the labels. After adjusting, you
+// will need to force the chart to redraw by manually refreshing the page.
+// Many additional chart style options are necessarily defined within the
+// chartOptions object in app/assets/scripts/components/point-chart.js.
 $base-height: 600px;
 $bottom: 40px;
 
