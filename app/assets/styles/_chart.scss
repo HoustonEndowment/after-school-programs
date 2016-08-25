@@ -22,7 +22,7 @@ $bottom: 40px;
 
 .chart-students-label {
   font-weight: 500;
-  color: rgb(131, 131, 131);
+  color: $chart-labels;
   position: absolute;
   top: $base-height / 3.65;
   left: 27px;
@@ -32,7 +32,7 @@ $bottom: 40px;
 .chart-slots-label {
   text-align: center;
   font-weight: 500;
-  color: rgb(131, 131, 131);
+  color: $chart-labels;
   position: absolute;
   bottom: 0;
   width: 100%;

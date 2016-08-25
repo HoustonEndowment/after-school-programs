@@ -73,7 +73,7 @@ const Map = React.createClass({
     const features = this._map.queryRenderedFeatures(e.point, { layers: ['districts', 'districts-hover'] })
     if (features.length) {
       this._map.setFilter('districts-active', ['==', 'DISTRICT', features[0].properties['DISTRICT']])
-      this.props.dispatch(updateSelected(features[0].properties['DISTRICT']))
+      this.props.dispatch(updateSelected(String(features[0].properties['DISTRICT'])))
     } else {
       this._map.setFilter('districts-active', ['==', 'DISTRICT', ''])
       this.props.dispatch(updateSelected(null))

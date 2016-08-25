@@ -10,47 +10,10 @@ const PointChart = React.createClass({
   },
 
   componentDidMount: function () {
-    var data = {
-      datasets: [
-        {
-          data: [
-            {
-              x: 21,
-              y: 7,
-              r: 10
-            }
-          ],
-          borderColor: 'rgb(151, 151, 151)',
-          backgroundColor: 'rgb(216, 216, 216)',
-          hoverBackgroundColor: 'rgb(151, 191, 238)'
-        },
-        {
-          data: [
-            {
-              x: 15,
-              y: 14,
-              r: 10
-            }
-          ],
-          borderColor: 'rgb(151, 151, 151)',
-          backgroundColor: 'rgb(216, 216, 216)',
-          hoverBackgroundColor: 'rgb(151, 191, 238)'
-        },
-        {
-          data: [
-            {
-              x: 40,
-              y: 24,
-              r: 10
-            }
-          ],
-          borderColor: 'rgb(151, 151, 151)',
-          backgroundColor: 'rgb(216, 216, 216)',
-          hoverBackgroundColor: 'rgb(151, 191, 238)'
-        }]
-    }
-
-    var options = {
+    const chartOptions = {
+      hover: {
+        onHover: this.onChartHover
+      },
       maintainAspectRatio: false,
       title: {
         display: true,
@@ -61,6 +24,9 @@ const PointChart = React.createClass({
       },
       legend: {
         display: false
+      },
+      tooltips: {
+        enabled: false
       },
       scales: {
         xAxes: [{
@@ -88,18 +54,65 @@ const PointChart = React.createClass({
       }
     }
 
-    const ctx = document.getElementById('chart')
+    const chartData = {
+      datasets: [
+        {
+          data: [
+            {
+              x: 21,
+              y: 7,
+              r: 10
+            }
+          ],
+          hoverRadius: 4,
+          borderColor: 'rgb(151, 151, 151)',
+          backgroundColor: 'rgb(216, 216, 216)',
+          hoverBackgroundColor: 'rgb(151, 191, 238)'
+        },
+        {
+          data: [
+            {
+              x: 15,
+              y: 14,
+              r: 10
+            }
+          ],
+          hoverRadius: 4,
+          borderColor: 'rgb(151, 151, 151)',
+          backgroundColor: 'rgb(216, 216, 216)',
+          hoverBackgroundColor: 'rgb(151, 191, 238)'
+        },
+        {
+          data: [
+            {
+              x: 40,
+              y: 24,
+              r: 10
+            }
+          ],
+          hoverRadius: 4,
+          borderColor: 'rgb(151, 151, 151)',
+          backgroundColor: 'rgb(216, 216, 216)',
+          hoverBackgroundColor: 'rgb(151, 191, 238)'
+        }]
+    }
 
-    this.myBubbleChart = new Chart(ctx, {
+    this.chart = new Chart(document.getElementById('chart'), {
       type: 'bubble',
-      data: data,
-      options: options
+      data: chartData,
+      options: chartOptions
     })
   },
 
   componentWillReceiveProps: function (nextProps) {
-    this.myBubbleChart.config.data.datasets[0].backgroundColor = 'rgb(151, 191, 238)'
-    this.myBubbleChart.update()
+    this.chart.config.data.datasets[0].backgroundColor = 'rgb(151, 191, 238)'
+    this.chart.update()
+  },
+
+  onChartHover: function (context) {
+    if (context.length) {
+      console.log('Hovering over chart item #' + context[0]._datasetIndex)
+    }
   },
 
   render: function () {
