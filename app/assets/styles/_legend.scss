@@ -1,0 +1,55 @@
+// Note: I'm experiencing a bug where I can't seem to find a way to add the
+// necessary top-margin to the legend's category labels using this file. The
+// label spacing, as well as the coloring of the legend, is defined inline in
+// the file called app/assets/scripts/components/legend.js.
+
+.legend {
+  float: left;
+  width: 100%;
+  padding-bottom: 13px;
+  border-bottom: 1px solid $border-grey;
+}
+
+.legend .legend-title {
+  margin: 25px 8px 15px 8px;
+  width: 85%;
+  margin-left: 7.5%;
+  h3 {
+    font-size: 17px;
+    font-weight: 600;
+    margin-bottom: 2px;
+  }
+  h4 {
+    font-size: 13px;
+    font-weight: 400;
+  }
+}
+
+.legend .legend-scale ul {
+  float: left;
+  list-style: none;
+  width: 85%;
+  margin-left: 7.5%;
+}
+
+.legend .legend-scale ul li {
+  display: block;
+  float: left;
+  width: 20%;
+  margin-bottom: 6px;
+  list-style: none;
+}
+
+.legend ul.legend-labels li {
+  font-size: 10px;
+  &:last-child {
+    text-align: right;
+  }
+}
+
+.legend ul.legend-labels li span {
+  display: block;
+  float: left;
+  height: 17px;
+  width: 100%;
+}

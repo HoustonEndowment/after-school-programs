@@ -1,0 +1,13 @@
+// Note: the map legend colors are defined inline in the file called
+// app/assets/scripts/components/legend.js
+
+// Used to style main layout frame borders
+$border-grey: rgb(151, 151, 151);
+// Used in the site header, with underline 20% darker
+$light-grey: rgb(238, 238, 238);
+// Hover 40% lighter
+$links: rgb(0, 0, 0);
+// X and Y axes category labels. The tick, axes, and datapoint colors are
+// defined inline in the chartOptions object within the
+// app/assets/scripts/components/point-chart.js file.
+$chart-labels: rgb(131, 131, 131);

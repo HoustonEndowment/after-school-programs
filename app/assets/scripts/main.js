@@ -23,13 +23,19 @@ const store = createStore(reducer, applyMiddleware(logger))
 // Components
 import Map from './components/map'
 import SideBar from './components/sidebar'
+import Header from './components/header'
+import Footer from './components/footer'
 
 const App = React.createClass({
   render: function () {
     return (
       <div className='app'>
-        <Map />
-        <SideBar />
+        <Header />
+        <div className='content'>
+          <SideBar />
+          <Map />
+        </div>
+        <Footer />
       </div>
     )
   }

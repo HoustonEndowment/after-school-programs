@@ -34,13 +34,13 @@ const Map = React.createClass({
   _addData (id, scale, filter) {
     this._map.addSource(id, {
       type: 'vector',
-      url: 'mapbox://nbumbarg.avmqf4ze'
+      url: 'mapbox://nbumbarg.9aw3gowo'
     })
     this._map.addLayer({
       'id': id,
       'type': 'fill',
-      'source': 'districts',
-      'source-layer': 'districts-2r7p1g',
+      'source': id,
+      'source-layer': 'SCHOOL_DISTRICT-1i1tkc',
       'interactive': true,
       'maxzoom': 18,
       'filter': filter,
@@ -53,6 +53,16 @@ const Map = React.createClass({
         'fill-outline-color': 'white'
       }
     })
+
+    const source = this._map.querySourceFeatures('districts', {
+      sourceLayer: 'SCHOOL_DISTRICT-1i1tkc'
+    })
+    console.log(source)
+
+    const rendered = this._map.queryRenderedFeatures({
+      layers: ['districts']
+    })
+    console.log(rendered)
   },
 
   shouldComponentUpdate: function () {
@@ -63,7 +73,7 @@ const Map = React.createClass({
     const features = this._map.queryRenderedFeatures(e.point, { layers: ['districts', 'districts-hover'] })
     if (features.length) {
       this._map.setFilter('districts-active', ['==', 'DISTRICT', features[0].properties['DISTRICT']])
-      this.props.dispatch(updateSelected(features[0].properties['DISTRICT']))
+      this.props.dispatch(updateSelected(String(features[0].properties['DISTRICT'])))
     } else {
       this._map.setFilter('districts-active', ['==', 'DISTRICT', ''])
       this.props.dispatch(updateSelected(null))
