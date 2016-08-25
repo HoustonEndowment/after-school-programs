@@ -11,7 +11,7 @@ const Map = React.createClass({
   },
   componentDidMount: function () {
     mapboxgl.accessToken = 'pk.eyJ1IjoibmJ1bWJhcmciLCJhIjoiWG1NN1BlYyJ9.nbifRhdBcN1K-mdtwwi0eQ'
-    const map = this._map = new mapboxgl.Map({
+    const map = window.mapGL = this._map = new mapboxgl.Map({
       container: 'map',
       style: 'mapbox://styles/mapbox/basic-v9',
       center: [-95.295, 29.953],
