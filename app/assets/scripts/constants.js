@@ -1,4 +1,7 @@
-export let chartOptions = {
+export const chartOptions = {
+  hover: {
+    onHover: ''
+  },
   maintainAspectRatio: false,
   title: {
     display: true,
@@ -17,7 +20,7 @@ export let chartOptions = {
     xAxes: [{
       ticks: {
         beginAtZero: true,
-        max: 0,
+        max: 50,
         fontColor: 'rgb(175,175,0175)'
       },
       gridLines: {
@@ -28,7 +31,7 @@ export let chartOptions = {
     yAxes: [{
       ticks: {
         beginAtZero: true,
-        max: 0,
+        max: 35,
         fontColor: 'rgb(175,175,0175)'
       },
       gridLines: {
