@@ -19,6 +19,7 @@ let attrGeom = srcGeom.features.map((feature) => {
   return feature
 })
 srcGeom.features = attrGeom
+const outputdata = {zipCodeData: srcGeom}
 
-console.log(srcGeom)
-fs.writeFile(destGeoJSON, JSON.stringify(srcGeom))
+console.log(outputdata)
+fs.writeFile(destGeoJSON, JSON.stringify(outputdata))
