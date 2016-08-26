@@ -15,7 +15,7 @@ const Sidebar = React.createClass({
     return (
       <section className='sidebar'>
         <Legend />
-        <PointChart data={this.props.selected}/>
+        <PointChart />
       </section>
     )
   }

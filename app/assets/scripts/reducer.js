@@ -1,6 +1,8 @@
+import { zipCodeData } from '../data/zip-code-data.json'
 import { UPDATE_HOVERED, UPDATE_SELECTED } from './actions'
 
 const initialState = {
+  mapData: zipCodeData,
   hovered: '',
   selected: ''
 }

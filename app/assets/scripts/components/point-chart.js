@@ -2,100 +2,52 @@ import React from 'react'
 import { connect } from 'react-redux'
 import Chart from 'chart.js'
 
-import { } from '../actions'
+import { chartOptions } from '../constants'
+
+import { updateHovered } from '../actions'
 
 const PointChart = React.createClass({
   propTypes: {
+    mapData: React.PropTypes.object,
+    hovered: React.PropTypes.string,
+    selected: React.PropTypes.string,
     dispatch: React.PropTypes.func
   },
 
   componentDidMount: function () {
-    const chartOptions = {
-      hover: {
-        onHover: this.onChartHover
-      },
-      maintainAspectRatio: false,
-      title: {
-        display: true,
-        text: 'Supply and Demand by Zipcode',
-        fontSize: 16,
-        padding: 40,
-        fullWidth: true
-      },
-      legend: {
-        display: false
-      },
-      tooltips: {
-        enabled: false
-      },
-      scales: {
-        xAxes: [{
-          ticks: {
-            beginAtZero: true,
-            max: 50,
-            fontColor: 'rgb(175,175,0175)'
-          },
-          gridLines: {
-            color: 'rgb(151, 151, 151)',
-            display: false
-          }
-        }],
-        yAxes: [{
-          ticks: {
-            beginAtZero: true,
-            max: 35,
-            fontColor: 'rgb(175,175,0175)'
-          },
-          gridLines: {
-            color: 'rgb(151, 151, 151)',
-            display: false
-          }
-        }]
-      }
+    this.metrics = this.props.mapData.features.map((feat) => feat.properties)
+
+    let highestSlots = 0
+    let highestStudents = 0
+
+    const chartData = { datasets:
+      this.metrics.map((metrics) => {
+        const totalSlots = metrics.slots_gradeKto5 +
+              metrics.slots_grade6to8 +
+              metrics.slots_grade9to12 +
+              metrics.slots_gradeKto12
+        const totalStudents = metrics.students_gradeKto5 +
+              metrics.students_grade6to8 +
+              metrics.students_grade9to12 +
+              metrics.students_gradeKto12
+
+        if (totalSlots > highestSlots) highestSlots = totalSlots
+        if (totalStudents > highestStudents) highestStudents = totalStudents
+
+        return {
+          label: metrics.zip_code,
+          data: [{x: totalSlots, y: totalStudents, r: 10}],
+          hoverRadius: 4,
+          borderColor: 'rgb(151, 151, 151)',
+          backgroundColor: 'rgb(216, 216, 216)',
+          hoverBackgroundColor: 'rgb(151, 191, 238)'
+        }
+      })
     }
 
-    const chartData = {
-      datasets: [
-        {
-          data: [
-            {
-              x: 21,
-              y: 7,
-              r: 10
-            }
-          ],
-          hoverRadius: 4,
-          borderColor: 'rgb(151, 151, 151)',
-          backgroundColor: 'rgb(216, 216, 216)',
-          hoverBackgroundColor: 'rgb(151, 191, 238)'
-        },
-        {
-          data: [
-            {
-              x: 15,
-              y: 14,
-              r: 10
-            }
-          ],
-          hoverRadius: 4,
-          borderColor: 'rgb(151, 151, 151)',
-          backgroundColor: 'rgb(216, 216, 216)',
-          hoverBackgroundColor: 'rgb(151, 191, 238)'
-        },
-        {
-          data: [
-            {
-              x: 40,
-              y: 24,
-              r: 10
-            }
-          ],
-          hoverRadius: 4,
-          borderColor: 'rgb(151, 151, 151)',
-          backgroundColor: 'rgb(216, 216, 216)',
-          hoverBackgroundColor: 'rgb(151, 191, 238)'
-        }]
-    }
+    chartOptions.hover.onHover = this.onChartHover
+    chartOptions.scales.xAxes[0].ticks.max = Math.ceil(highestSlots / 500) * 500
+    chartOptions.scales.yAxes[0].ticks.max = Math.ceil(highestStudents / 500) * 500
 
     this.chart = new Chart(document.getElementById('chart'), {
       type: 'bubble',
@@ -105,13 +57,15 @@ const PointChart = React.createClass({
   },
 
   componentWillReceiveProps: function (nextProps) {
-    this.chart.config.data.datasets[0].backgroundColor = 'rgb(151, 191, 238)'
-    this.chart.update()
+
   },
 
   onChartHover: function (context) {
     if (context.length) {
-      console.log('Hovering over chart item #' + context[0]._datasetIndex)
+      const hoveredZip = this.metrics[context[0]._datasetIndex].zip_code
+      this.props.dispatch(updateHovered(hoveredZip))
+    } else {
+      this.props.dispatch(updateHovered(''))
     }
   },
 
@@ -134,6 +88,7 @@ const PointChart = React.createClass({
 
 function mapStateToProps (state) {
   return {
+    mapData: state.mapData,
     hovered: state.hovered,
     selected: state.selected
   }

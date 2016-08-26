@@ -1,6 +1,5 @@
 export const UPDATE_HOVERED = 'UPDATE_HOVERED'
 export const UPDATE_SELECTED = 'UPDATE_SELECTED'
-export const DESELECT = 'DESELECT'
 
 export function updateHovered (hovered) {
   return { type: UPDATE_HOVERED, data: hovered }
