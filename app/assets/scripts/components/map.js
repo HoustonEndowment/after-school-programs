@@ -36,6 +36,7 @@ const Map = React.createClass({
 
   componentWillReceiveProps: function (nextProps) {
     const zipCode = nextProps.hovered
+    console.log(zipCode)
     if (zipCode.length) {
       this._highlightFeature(zipCode)
     } else {
