@@ -57,12 +57,36 @@ const PointChart = React.createClass({
   },
 
   componentWillReceiveProps: function (nextProps) {
+    const zipCode = nextProps.hovered
+    if (zipCode.length) {
+      this._highlightChart(zipCode)
+    } else {
+      this._unhighlightChart()
+    }
+  },
 
+  _highlightChart: function (zipCode) {
+    this.chart.config.data.datasets.forEach((element) => {
+      if (element.label === zipCode) {
+        element.backgroundColor = 'rgb(151, 191, 238)'
+      } else {
+        element.backgroundColor = 'rgb(216, 216, 216)'
+      }
+      this.chart.update()
+    })
+  },
+
+  _unhighlightChart: function () {
+    this.chart.config.data.datasets.forEach((element) => {
+      element.backgroundColor = 'rgb(216, 216, 216)'
+      this.chart.update()
+    })
   },
 
   onChartHover: function (context) {
     if (context.length) {
       const hoveredZip = this.metrics[context[0]._datasetIndex].zip_code
+      this.chart.update()
       this.props.dispatch(updateHovered(hoveredZip))
     } else {
       this.props.dispatch(updateHovered(''))
