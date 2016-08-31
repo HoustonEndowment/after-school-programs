@@ -12,10 +12,18 @@ const Sidebar = React.createClass({
     dispatch: React.PropTypes.func
   },
   render: function () {
+    const selected = this.props.selected
+    if (selected.length) {
+      return (
+        <section className='sidebar'>
+          {/* <PointChart /> */}
+          <MainFigure />
+        </section>
+      )
+    }
     return (
       <section className='sidebar'>
-        {/* <PointChart /> */}
-        <MainFigure />
+        <PointChart />
       </section>
     )
   }
