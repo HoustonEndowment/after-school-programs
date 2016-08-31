@@ -62,62 +62,26 @@
 
 }
 
-.after-school-programs {
-  width: 100%;
-  height: 125px;
-  margin-top: 50px;
-  .title {
-    text-transform: uppercase;
-    font-size: 12px;
-    margin-left: 32px;
-    border-bottom: 1px solid $border-grey;
-  }
-  .program-count {
-    float: left;
-    margin: 30px 0 0 30px;
-    width: 100px;
-    height: 65px;
-    .small-text {
-      float: left;
-      margin: 22px 0 0 -1px;
-      font-size: 13px;
-      font-weight: 100;
-    }
-    .bold-text {
-      float: left;
-      margin: 19px 2px 0 -1px;
-      font-size: 16px;
-    }
-  }
-  .barchart-total {
-    margin: 31px 0 0 26px;
-    float: left;
-    width: 122px;
-    height: 61px;
-  }
-}
-
 // Bar chart
 .barchart {
   height: 100%;
   width: 100%;
   .barchart-small-text {
     float: left;
-    margin: 2% 0 0 2%;
-    font-size: 78.5%;
+    margin: 0.2rem 0 0 0.2rem;
+    font-size: 0.75rem;
     font-weight: 100;
   }
   .barchart-bold-text {
     float: left;
-    margin: 0;
-    padding: 0;
-    font-size: 100%;
+    font-size: 1rem;
+    font-weight: 600;
   }
   .bars  {
-    margin: 4% 0 5% 0;
     float: left;
     width: 100%;
-    height: 28%;
+    height: 1.1rem;
+    margin: 0.2rem 0 0.3rem 0;
   }
   .students-bar {
     height: 50%;
@@ -127,4 +91,11 @@
     height: 50%;
     background-color: rgb(131, 131, 131);
   }
+}
+
+// Bar chart containers
+.barchart-total {
+  float: left;
+  width: 122px;
+  height: 61px;
 }

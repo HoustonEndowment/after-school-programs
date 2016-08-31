@@ -35,6 +35,15 @@ const MainFigure = React.createClass({
             <dt className='feeder-schools data-number'>5</dt>
             <dd className='data-description'>Feeder Schools</dd>
           </dl>
+          <div className='barchart-total'>
+            <BarChart
+              students={45}
+              studentPercent={90}
+              slots={70}
+              slotPercent={45}
+              zipCode={'20001'}
+            />
+          </div>
       </div>
     )
   }

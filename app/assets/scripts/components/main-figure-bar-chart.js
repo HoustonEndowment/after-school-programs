@@ -9,10 +9,10 @@ export default function (data) {
       </div>
       <div className='bars'>
         <div className='students-bar'
-          style={{width: data.studentPercent}}>
+          style={{width: data.studentPercent + '%'}}>
           </div>
         <div className='slots-bar'
-          style={{width: data.slotPercent}}>
+          style={{width: data.slotPercent + '%'}}>
         </div>
       </div>
       <div className='slots-count'>
