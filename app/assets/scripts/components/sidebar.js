@@ -6,9 +6,10 @@ import { } from '../actions'
 import PointChart from './point-chart'
 import MainFigure from './main-figure'
 
-const Sidebar = React.createClass({
+const SideBar = React.createClass({
   propTypes: {
     selected: React.PropTypes.string,
+    mapData: React.PropTypes.object,
     dispatch: React.PropTypes.func
   },
   render: function () {
@@ -16,7 +17,10 @@ const Sidebar = React.createClass({
     if (selected.length) {
       return (
         <section className='sidebar'>
-          <MainFigure />
+          <MainFigure
+            selected={this.props.selected}
+            mapData={this.props.mapData}
+          />
         </section>
       )
     }
@@ -34,4 +38,4 @@ function mapStateToProps (state) {
   }
 }
 
-export default connect(mapStateToProps)(Sidebar)
+export default connect(mapStateToProps)(SideBar)
