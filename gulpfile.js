@@ -167,6 +167,10 @@ gulp.task('build', ['vendorScripts', 'javascript'], function () {
 });
 
 gulp.task('styles', function () {
+  // Write jeet configuration file
+  const jeetConfigStr = "@import '_settings';\n@import '_jeet';\n@import '_functions';\n@import '_grid';\n";
+  const jeetConfigFile = 'node_modules/jeet/scss/jeet/index.scss';
+  fs.writeFile(jeetConfigFile, jeetConfigStr);
   return gulp.src('app/assets/styles/main.scss')
     .pipe($.plumber(function (e) {
       notifier.notify({
@@ -191,12 +195,14 @@ gulp.task('styles', function () {
           return v;
         }
       },
-      includePaths: ['.'].concat(require('node-bourbon').includePaths)
+      includePaths: ['.'].concat(require('node-bourbon').includePaths).concat(['node_modules/jeet/scss'])
     }))
     .pipe($.sourcemaps.write())
     .pipe(gulp.dest('.tmp/assets/styles'))
     .pipe(reload({stream: true}));
 });
+
+console.log('here it is:\n\n\n', ['.'].concat(require('node-bourbon').includePaths).concat(['node_modules/jeet/scss']))
 
 gulp.task('html', ['styles'], function () {
   return gulp.src('app/*.html')

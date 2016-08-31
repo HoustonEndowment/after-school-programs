@@ -1,0 +1,66 @@
+/* ==========================================================================
+   Colors
+   ========================================================================== */
+$base-color: #000;                    // Black
+$base-color-light: #FFF;              // white
+$primary-color: #6E4E67;              // Purple 
+$secondary-color: #2B6775;          	// Dark Blue
+$tertiary-color: #3DA1A4;            	// bright blue
+
+$infographic-a-color: #E89025;        // orange
+$infographic-b-color: #77A748;        // green
+
+$link-color: $primary-color;
+$base-alpha-color: rgba($base-color, 0.12);
+
+
+/* ==========================================================================
+   Typography
+   ========================================================================== */
+
+$base-font-color: $base-color;
+$base-font-family: 'Lato', Helvetica, Arial, sans-serif;
+$base-font-style: normal;
+$base-font-light: 300;
+$base-font-regular: 400;
+$base-font-bold: 700;
+$base-font-weight: $base-font-regular;
+
+$display-font-family: 'Playfair Display SC', 'Georgia', serif;
+$body-font-family: 'Lato', Helvetica, Arial, sans-serif;
+
+/* ==========================================================================
+   Decoration
+   ========================================================================== */
+
+/* Border radius */
+
+$global-radius: 0.25rem;
+$semi-radius: $global-radius/2;
+$global-rounded: 60rem;
+
+
+/* ==========================================================================
+   Spacing and media queries
+   ========================================================================== */
+
+/* Rows */
+
+$row-min-width: 320px;
+$row-max-width: 1280px;
+$jeet-max-width: $row-max-width; // reset jeet.gs max width
+
+/* Media queries */
+
+$xsmall-range: (0, 543px);
+$small-range: (544px, 767px);
+$medium-range: (768px, 991px);
+$large-range: (992px, 1199px);
+$xlarge-range: (1200px);
+
+$screen: "only screen";
+
+/* Spacing */
+
+$global-spacing: 1rem;
+$section-spacing: 4rem;
