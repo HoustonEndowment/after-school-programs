@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { } from '../actions'
 
 import PointChart from './point-chart'
-import Legend from './legend'
+import MainFigure from './main-figure'
 
 const Sidebar = React.createClass({
   propTypes: {
@@ -14,8 +14,8 @@ const Sidebar = React.createClass({
   render: function () {
     return (
       <section className='sidebar'>
-        <Legend />
-        <PointChart />
+        {/* <PointChart /> */}
+        <MainFigure />
       </section>
     )
   }

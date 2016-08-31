@@ -2,6 +2,9 @@ import React from 'react'
 import { connect } from 'react-redux'
 import mapboxgl from 'mapbox-gl'
 import centerpoint from 'turf-center'
+
+import Legend from './legend'
+
 import { updateHovered, updateSelected } from '../actions'
 
 const Map = React.createClass({
@@ -36,6 +39,7 @@ const Map = React.createClass({
 
   componentWillReceiveProps: function (nextProps) {
     const zipCode = nextProps.hovered
+    console.log(zipCode)
     if (zipCode.length) {
       this._highlightFeature(zipCode)
     } else {
@@ -101,6 +105,7 @@ const Map = React.createClass({
   },
 
   render: function () {
+    <Legend />
     return <div id='map' className='map' />
   }
 })

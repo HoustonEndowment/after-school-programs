@@ -4,10 +4,12 @@
 // the file called app/assets/scripts/components/legend.js.
 
 .legend {
-  float: left;
-  width: 100%;
-  padding-bottom: 13px;
-  border-bottom: 1px solid $border-grey;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
+  width: 325px;
+  background-color: rgb(255, 255, 255);
 }
 
 .legend .legend-title {
