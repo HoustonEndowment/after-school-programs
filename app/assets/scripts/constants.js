@@ -2,6 +2,10 @@ export const chartOptions = {
   hover: {
     onHover: ''
   },
+  animation: {
+    duration: 400,
+    easing: 'easeInOutExpo'
+  },
   maintainAspectRatio: false,
   title: {
     display: true,

@@ -16,7 +16,6 @@ const Sidebar = React.createClass({
     if (selected.length) {
       return (
         <section className='sidebar'>
-          {/* <PointChart /> */}
           <MainFigure />
         </section>
       )

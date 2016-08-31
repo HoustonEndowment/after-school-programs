@@ -5,12 +5,14 @@ import { connect } from 'react-redux'
 
 import { } from '../actions'
 
+import BarChart from './main-figure-bar-chart'
+
 const MainFigure = React.createClass({
   render: function () {
     return (
       <div className='main-figure-top'>
         <div className='back-link'>
-          <a href='#'>Back to All Area</a>
+          <a href='#'>Back to All Areas</a>
         </div>
         <div className='zipcode'>129410</div>
         <div className='med-income'>
@@ -38,6 +40,15 @@ const MainFigure = React.createClass({
           <div className='program-count'>
             <span className='bold-text'>34</span>
             <span className='small-text'>programs</span>
+          </div>
+          <div className='barchart-total'>
+            <BarChart
+              students={45}
+              studentPercent={90}
+              slots={70}
+              slotPercent={45}
+              zipCode={'20001'}
+            />
           </div>
         </div>
       </div>

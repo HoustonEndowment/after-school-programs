@@ -45,7 +45,7 @@ const PointChart = React.createClass({
       })
     }
 
-    chartOptions.hover.onHover = this.onChartHover
+    chartOptions.hover.onHover = this._onChartHover
     chartOptions.scales.xAxes[0].ticks.max = Math.ceil(highestSlots / 500) * 500
     chartOptions.scales.yAxes[0].ticks.max = Math.ceil(highestStudents / 500) * 500
 
@@ -83,7 +83,7 @@ const PointChart = React.createClass({
     })
   },
 
-  onChartHover: function (context) {
+  _onChartHover: function (context) {
     if (context.length) {
       const hoveredZip = this.metrics[context[0]._datasetIndex].zip_code
       this.chart.update()
