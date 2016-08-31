@@ -2,19 +2,19 @@
   height: 100%;
   width: 100%;
   overflow: auto;
+/*  padding: $global-spacing ($global-spacing * 2);*/
 
 }
 
 .main-figure-interior{
   height: 899px;
-  width: 100%;
-  background-image: url('../graphics/Panel-Information.png');
+  padding: $global-spacing 0;
+  @include col(10/12, $offset: 1/12);
 }
 
 // Top
 .back-link {
   font-size: 11px;
-  padding: 23px 0 0 28.5px;
   a {
     color: $links;
     &:hover {
@@ -23,10 +23,10 @@
   }
 }
 
-.zipcode {
-  font-size: 26px;
-  font-weight: 600;
-  padding: 12px 0 0 32px;
+.zipcode-title {
+  font-size: 1.25rem;
+  line-height: 1.5rem;
+  font-weight: $base-font-regular;
 }
 
 .small-text {
@@ -41,25 +41,25 @@
 }
 
 .med-income {
-  padding: 3px 0 0 33px;
+
 }
 
 .fam-below-poverty {
-  padding: 3px 0 0 33px;
+
 }
 
 .school-aged-children {
-  padding: 20px 0 0 33px;
+
 }
 
 .dropout-factories {
   float: left;
-  padding: 5px 0 0 33px;
+
 }
 
 .feeder-schools {
   float: left;
-  margin: 5px 0 0 20px;
+
 }
 
 .after-school-programs {
@@ -70,7 +70,6 @@
     text-transform: uppercase;
     font-size: 12px;
     margin-left: 32px;
-    padding: 10px 94px 7px 0;
     border-bottom: 1px solid $border-grey;
   }
   .program-count {
