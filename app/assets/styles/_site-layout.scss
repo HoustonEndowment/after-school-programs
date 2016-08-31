@@ -2,67 +2,50 @@ body {
   font-family: Helvetica;
 }
 
+.header-container{
+  background-image: url('../graphics/layout/colored-bar.svg');
+  background-size: 100% 10px;
+  background-repeat: no-repeat;
+  background-position: top;
+  @include col(12/12);
+}
+
 .header {
   position: relative;
-  height: 175px;
-  width: 100%;
-  border-bottom: 1px solid $border-grey;
+  padding: ($global-spacing * 8) 0;
+  @include col(10/12, $offset: 1/12);
 }
 
-.header-title {
-  height: 40px;
-  background-color: $light-grey;
-  border-bottom: 1px solid darken($light-grey, 20%);
-  h1 {
-    font-size: 17px;
-    font-weight: 600;
-    padding: 10px 0 0 10px;
-  }
-}
-
-.header-body {
-  p {
-    font-size: 13px;
-    text-align: center;
-  }
-  h2 {
-    font-size: 22px;
-    text-align: center;
-    margin: 25px 0 10px 0;
-  }
+.header-copy {
+  text-align: center;
+  position: relative;
 }
 
 .footer {
-  position: relative;
-  width: 100%;
-  height: 175px;
-  border-top: 1px solid $border-grey;
+  padding: ($global-spacing * 2) 0 ($global-spacing * 4) 0;
+  @include col(11/12, $offset: 0.5/12);
 }
 
 .footer-sources {
-  padding: 40px 0 40px 0;
-  p {
-    font-size: 12px;
-    text-align: center;
-  }
+  @include col(8/12);
+  font-size: 0.875rem;
 }
 
 .footer-links {
-  text-align: center;
+  @include col(4/12);
   a {
-    font-size: 16px;
-    color: $links;
-    margin: 0 30px 0 30px;
-    &:hover {
-      color: lighten($links, 40%);
-    }
+    @include col(12/12);
+    margin-right: 0;
+    line-height: 2rem;
   }
 }
 
 .content {
   position: relative;
-  width: 100%;
+  @include col(12/12);
   height: 700px;
+  border-bottom: solid 1px tint($base-color, 80%);
+  border-top: solid 1px tint($base-color, 80%);
 }
 
 #map {
