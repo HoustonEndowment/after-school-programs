@@ -14,13 +14,8 @@
 
 // Top
 .back-link {
-  font-size: 11px;
-  a {
-    color: $links;
-    &:hover {
-      color: lighten($links, 40%);
-    }
-  }
+  font-size: 0.75rem;
+  margin-bottom: $global-spacing/2;
 }
 
 .zipcode-title {
