@@ -33,6 +33,7 @@ const MainFigure = React.createClass({
             <dt className='feeder-schools data-number'>5</dt>
             <dd className='data-description'>Feeder Schools</dd>
           </dl>
+          <hr className='section'/>
       </div>
     )
   }
