@@ -106,13 +106,8 @@ const Map = React.createClass({
     const features = this._map.queryRenderedFeatures(e.point, { layers: ['zipCodes', 'zipCodes-hover'] })
     if (features.length) {
       this._map.getCanvas().style.cursor = 'pointer'
-      this._popup.setLngLat(centerpoint(features[0]).geometry.coordinates)
-        .setHTML(this._generateTooltip(features[0].properties))
-        .addTo(this._map)
-
       this._highlightFeature(features[0].properties['zip_code'])
     } else {
-      this._popup.remove()
       this._map.getCanvas().style.cursor = ''
       this._unhighlightFeature()
     }
@@ -129,12 +124,19 @@ const Map = React.createClass({
   },
 
   _highlightFeature: function (zipCode) {
+    const feature = this.props.mapData.features.find((feature) => {
+      return feature.properties.zip_code === zipCode
+    })
     this._map.setFilter('zipCodes-hover', ['==', 'zip_code', zipCode])
+    this._popup.setLngLat(centerpoint(feature).geometry.coordinates)
+      .setHTML(this._generateTooltip(feature.properties))
+      .addTo(this._map)
     this.props.dispatch(updateHovered(zipCode))
   },
 
   _unhighlightFeature: function () {
     this._map.setFilter('zipCodes-hover', ['==', 'zip_code', ''])
+    this._popup.remove()
     this.props.dispatch(updateHovered(''))
   },
 

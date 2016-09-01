@@ -2,6 +2,7 @@
 
 import React from 'react'
 import { connect } from 'react-redux'
+import { totalStudents, totalSlots } from '../utils'
 
 import { updateSelected } from '../actions'
 
@@ -16,8 +17,9 @@ const MainFigure = React.createClass({
   },
   _getHighestValue: (zipProps) => {
     let values = [zipProps.students_gradeKto5, zipProps.students_grade6to8,
-                  zipProps.students_grade9to12, zipProps.slots_gradeKto5,
-                  zipProps.slots_grade6to8, zipProps.slots_grade9to12]
+                  zipProps.students_grade9to12, zipProps.students_gradeKto12,
+                  zipProps.slots_gradeKto5, zipProps.slots_grade6to8,
+                  zipProps.slots_grade9to12, zipProps.slots_gradeKto12]
     return Math.max.apply(null, values.map((value) => parseInt(value)))
   },
 
@@ -39,6 +41,11 @@ const MainFigure = React.createClass({
     const slots9To12 = zipProps.slots_grade9to12
     const studentsKTo12 = zipProps.students_gradeKto12
     const slotsKTo12 = zipProps.slots_gradeKto12
+
+    const studentsTotal = totalStudents(zipProps)
+    const slotsTotal = totalSlots(zipProps)
+    const highValTotal = Math.max(studentsTotal, slotsTotal)
+
     return (
       <div className='main-figure'>
         <div className='main-figure-interior'>
@@ -86,10 +93,10 @@ const MainFigure = React.createClass({
               </dl>
               <div className='barchart-total'>
                 <BarChart
-                  students={45}
-                  studentPercent={90}
-                  slots={70}
-                  slotPercent={45}
+                  students={studentsTotal}
+                  studentPercent={studentsTotal / highValTotal * 100}
+                  slots={slotsTotal}
+                  slotPercent={slotsTotal / highValTotal * 100}
                   zipCode={'20001'}
                 />
               </div>
