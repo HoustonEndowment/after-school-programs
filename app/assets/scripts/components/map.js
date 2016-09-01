@@ -2,8 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import mapboxgl from 'mapbox-gl'
 import centerpoint from 'turf-center'
-
-import Legend from './legend'
+import { totalStudents, totalSlots } from '../utils'
 
 import { updateHovered, updateSelected } from '../actions'
 
@@ -89,12 +88,26 @@ const Map = React.createClass({
     }
   },
 
+  _generateTooltip: function (zipProps) {
+    return (
+      `<div class="zipcode panel-subhead"><h2>${zipProps.zip_code}</h2></div>
+        <div class="students-count">
+          <span class="data-number">${totalStudents(zipProps)}</span>
+          <span class="data-description">eligible students</span>
+        </div>
+        <div class="slots-count">
+          <span class="data-number">${totalSlots(zipProps)}</span>
+          <span class="data-description">available program spots</span>
+        </div>`
+    )
+  },
+
   _mouseMove: function (e) {
     const features = this._map.queryRenderedFeatures(e.point, { layers: ['zipCodes', 'zipCodes-hover'] })
     if (features.length) {
       this._map.getCanvas().style.cursor = 'pointer'
       this._popup.setLngLat(centerpoint(features[0]).geometry.coordinates)
-        .setHTML(features[0].properties.zip_code)
+        .setHTML(this._generateTooltip(features[0].properties))
         .addTo(this._map)
 
       this._highlightFeature(features[0].properties['zip_code'])
@@ -126,7 +139,6 @@ const Map = React.createClass({
   },
 
   render: function () {
-    <Legend />
     return <div id='map' className='map' />
   }
 })
