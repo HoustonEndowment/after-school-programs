@@ -4,8 +4,8 @@ export default function (data) {
   return (
     <div className='barchart'>
       <div className='students-count'>
-        <span className='barchart-bold-text'>{data.students}</span>
-        <span className='barchart-small-text'>eligible students</span>
+        <span className='data-number'>{data.students}</span>
+        <span className='data-description'> eligible students</span>
       </div>
       <div className='bars'>
         <div className='students-bar'
@@ -16,8 +16,8 @@ export default function (data) {
         </div>
       </div>
       <div className='slots-count'>
-        <span className='barchart-bold-text'>{data.slots}</span>
-        <span className='barchart-small-text'>available slots</span>
+        <span className='data-number'>{data.slots}</span>
+        <span className='data-description'> available slots</span>
       </div>
     </div>
   )

@@ -64,6 +64,20 @@ dt {
   width:100%;
 }
 
+.data-number {
+  font-size: 1.25rem;
+  line-height: 1rem;
+  color: $secondary-color;
+  font-weight: $base-font-regular;
+  font-family: $base-font-family;
+}
+
+.data-description {
+  font-size: 0.875rem;
+  font-weight: $base-font-regular;
+  font-family: $base-font-family;
+}
+
 dd {
   margin-bottom: $global-spacing / 2;
   font-size: 0.875rem;
@@ -114,13 +128,13 @@ blockquote {
 /* Dividers
    ========================================================================== */
 
-hr .inner {
+.inner {
   border: 0;
   height: 1px;
   background: $base-alpha-color;
-  width: 80%;
+  width: 100%;
   max-width: 16rem;
-  margin: ($global-spacing * 2) auto;
+  margin: ($global-spacing) 0;
 }
 
 .section {
@@ -129,7 +143,16 @@ hr .inner {
   background: tint($secondary-color, 40%);
   width: 100%;
   max-width: 16rem;
-  margin: ($global-spacing * 2) auto;
+  margin: ($global-spacing) 0;
+}
+
+.vertical {
+  border: 0;
+  height: 100%;
+  background: tint($secondary-color, 40%);
+  width: 1px;
+  height-width: 16rem;
+  margin: ($global-spacing) 0;
 }
 
 
@@ -186,6 +209,14 @@ hr .inner {
   .heading-alt {
     background-color: $secondary-color;
   }
+}
+
+.panel-subhead {
+  font-family: $base-font-family;
+  font-size: 1rem;
+  text-transform: capitalize;
+  font-weight: $base-font-bold;
+  line-height: 1.5rem;
 }
 
 .share {

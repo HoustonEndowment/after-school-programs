@@ -79,12 +79,12 @@
     height: 28%;
   }
   .students-bar {
-    height: 50%;
-    background-color: rgb(216, 216, 216);
+    height: 60%;
+    background-color: tint($secondary-color, 50%);
   }
   .slots-bar {
-    height: 50%;
-    background-color: rgb(131, 131, 131);
+    height: 60%;
+    background-color: $secondary-color;
   }
 }
 
@@ -94,4 +94,45 @@
   width: 122px;
   height: 61px;
   font-size: 16px;
+}
+
+.grade-breakdown {
+  height: 140px;
+}
+
+.barchart-total-horizontal {
+  float: left;
+  width: 100%;
+  height: 61px;
+  font-size: 16px;
+  .barchart-stats {
+    width: 40%;
+    float: left;
+  }
+  .bars {
+    width: 50%;
+    margin-left: $global-spacing/2;
+  }
+  .students-bar {
+    height: 60%;
+    background-color: tint($infographic-b-color, 40%);
+    margin-top: -$global-spacing/4;
+  }
+  .slots-bar {
+    margin-top: $global-spacing/3;
+    height: 60%;
+    background-color: $infographic-b-color;
+  }
+  .data-number {
+    font-size: 1rem;
+  }
+  .data-description {
+    font-size: 0.75rem;
+  }
+  .data-students {
+    color: tint($infographic-b-color, 30%);
+  }
+  .data-slots {
+    color: $infographic-b-color;
+  }
 }
