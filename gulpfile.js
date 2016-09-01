@@ -202,8 +202,6 @@ gulp.task('styles', function () {
     .pipe(reload({stream: true}));
 });
 
-console.log('here it is:\n\n\n', ['.'].concat(require('node-bourbon').includePaths).concat(['node_modules/jeet/scss']))
-
 gulp.task('html', ['styles'], function () {
   return gulp.src('app/*.html')
     .pipe($.useref({searchPath: ['.tmp', 'app', '.']}))
