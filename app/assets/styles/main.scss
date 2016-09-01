@@ -22,6 +22,11 @@
 
 @import "bourbon";
 
+@import "jeet/index";
+
+@import "mapboxgl";
+
+
 
 /* Reboot
    ========================================================================== */
@@ -37,18 +42,20 @@
 
 @import "normalize-opentype";
 
-
 /* Settings
    ========================================================================== */
-
+@import "mixins";
+@import "utils";
+@import "variables";
+@import "typography";
 
 /* Main
    ========================================================================== */
 
 @import "constants";
 @import "base";
-@import "site_layout";
+@import "site-layout";
 @import "legend";
 @import "chart";
-@import "main_figure";
+@import "main-figure";
 @import "tooltip";

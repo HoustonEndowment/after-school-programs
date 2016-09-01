@@ -4,7 +4,7 @@ import Chart from 'chart.js'
 
 import { chartOptions } from '../constants'
 
-import { updateHovered } from '../actions'
+import { updateHovered, updateSelected } from '../actions'
 
 const PointChart = React.createClass({
   propTypes: {
@@ -45,7 +45,8 @@ const PointChart = React.createClass({
       })
     }
 
-    chartOptions.hover.onHover = this.onChartHover
+    chartOptions.hover.onHover = this._onChartHover
+    chartOptions.onClick = this._onChartClick
     chartOptions.scales.xAxes[0].ticks.max = Math.ceil(highestSlots / 500) * 500
     chartOptions.scales.yAxes[0].ticks.max = Math.ceil(highestStudents / 500) * 500
 
@@ -83,13 +84,21 @@ const PointChart = React.createClass({
     })
   },
 
-  onChartHover: function (context) {
+  _onChartHover: function (context) {
     if (context.length) {
       const hoveredZip = this.metrics[context[0]._datasetIndex].zip_code
       this.chart.update()
       this.props.dispatch(updateHovered(hoveredZip))
     } else {
       this.props.dispatch(updateHovered(''))
+    }
+  },
+
+  _onChartClick: function (event) {
+    const context = this.chart.getElementAtEvent(event)
+    if (context[0]) {
+      const selectedZip = this.metrics[context[0]._datasetIndex].zip_code
+      this.props.dispatch(updateSelected(selectedZip))
     }
   },
 

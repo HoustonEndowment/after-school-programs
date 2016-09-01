@@ -2,10 +2,13 @@ export const chartOptions = {
   hover: {
     onHover: ''
   },
+  animation: {
+    duration: 400,
+    easing: 'easeInOutExpo'
+  },
   maintainAspectRatio: false,
   title: {
     display: true,
-    text: 'Supply and Demand by Zipcode',
     fontSize: 16,
     padding: 40,
     fullWidth: true

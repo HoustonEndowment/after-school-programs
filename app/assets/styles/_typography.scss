@@ -1,0 +1,251 @@
+/* ==========================================================================
+   Typography
+   ========================================================================== */
+
+p, ul, ol, dl, pre, blockquote {
+  margin-bottom: $global-spacing;
+}
+
+p {
+  font-weight: $base-font-light;
+  font-family: $body-font-family;
+  color: tint($base-color, 20%);
+}
+
+a {
+  font-family: $base-font-family;
+  font-weight: $base-font-bold;
+  line-height: 2rem;
+  color: $primary-color;
+  &:hover {
+    color: tint($primary-color, 30%);
+  }
+}
+
+/* Lead
+   ========================================================================== */
+
+.lead {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  font-weight: $base-font-light;
+  opacity: 0.64;
+}
+
+/* Lists
+   ========================================================================== */
+
+ol ol, ol ul, ul ol, ul ul {
+  margin-bottom: 0;
+}
+
+ul, ol {
+  list-style-position: outside;
+  margin-left: $global-spacing + ($global-spacing / 2);
+}
+
+ul {
+  list-style-type: disc;
+}
+
+ol {
+  list-style-type: decimal;
+}
+
+dl {
+  font-family: $base-font-family;
+}
+
+dt {
+  font-size: 1.25rem;
+  line-height: 1rem;
+  color: $secondary-color;
+  margin-bottom: $global-spacing / 2;
+  width:100%;
+}
+
+.data-number {
+  font-size: 1.25rem;
+  line-height: 1rem;
+  color: $secondary-color;
+  font-weight: $base-font-regular;
+  font-family: $base-font-family;
+}
+
+.data-description {
+  font-size: 0.875rem;
+  font-weight: $base-font-regular;
+  font-family: $base-font-family;
+}
+
+dd {
+  margin-bottom: $global-spacing / 2;
+  font-size: 0.875rem;
+}
+
+.dl-horizontal {
+  font-family: $base-font-family;
+  @extend .clearfix;
+  dt, dd {
+    float: left;
+  }
+  dt {
+    clear: left;
+    padding-top: $global-spacing / 8;
+    padding-bottom: $global-spacing / 8;
+    padding-right: $global-spacing / 2;
+    width: auto;
+  }
+  dd {
+    padding-top: $global-spacing / 4;
+  }
+  dd + dd {
+    margin-left: 32%;
+  }
+}
+
+
+/* Blockquote
+   ========================================================================== */
+
+blockquote {
+  box-shadow: inset 1px 0 0 0 $base-alpha-color;
+  padding: ($global-spacing / 2) $global-spacing;
+  *:last-child {
+    margin-bottom: 0;
+  }
+  footer {
+    opacity: 0.64;
+    font-weight: $base-font-regular;
+    margin-top: -0.5rem;
+    &:before {
+      content: '— ';
+    }
+  }
+}
+
+
+/* Dividers
+   ========================================================================== */
+
+.inner {
+  border: 0;
+  height: 1px;
+  background: $base-alpha-color;
+  width: 100%;
+  max-width: 16rem;
+  margin: ($global-spacing) 0;
+}
+
+.section {
+  border: 0;
+  height: 1px;
+  background: tint($secondary-color, 40%);
+  width: 100%;
+  max-width: 16rem;
+  margin: ($global-spacing) 0;
+}
+
+.vertical {
+  border: 0;
+  height: 100%;
+  background: tint($secondary-color, 40%);
+  width: 1px;
+  height-width: 16rem;
+  margin: ($global-spacing) 0;
+}
+
+
+
+/* Headings
+   ========================================================================== */
+
+.heading, h1, h2, h3, h4, h5, h6 {
+  font-family: $display-font-family;
+  font-weight: $base-font-regular;
+  margin-top: 0;
+  margin-bottom: $global-spacing;
+  small {
+    font-size: 80%;
+    font-weight: normal;
+    vertical-align: top;
+  }
+}
+
+.heading--xlarge {
+  @include heading(1.75rem, xlarge-up);   // 28, 32, 36, 40
+}
+
+.heading--large {
+  @include heading(1.5rem, xlarge-up);    // 24, 28, 32, 36
+}
+
+.heading--medium {
+  @include heading(1.25rem, xlarge-up);   // 20, 24, 28, 32
+}
+
+.heading--small,
+.heading--xsmall,
+.heading--xxsmall {
+  @include heading(1rem, xlarge-up);      // 16, 20, 24, 28
+}
+
+.heading-alt {
+  font-size: 0.875rem;
+  font-family: $base-font-family;
+  line-height: 0;
+  padding: $global-spacing;
+  color: $base-color-light;
+  display: inline-block;
+}
+
+.header {
+  .heading-alt {
+    background-color: $primary-color;
+  }
+}
+
+.footer {
+  .heading-alt {
+    background-color: $secondary-color;
+  }
+}
+
+.panel-subhead {
+  font-family: $base-font-family;
+  font-size: 1rem;
+  text-transform: capitalize;
+  font-weight: $base-font-bold;
+  line-height: 1.5rem;
+}
+
+.share {
+  color: $primary-color;
+  text-transform: uppercase;
+  padding: $global-spacing 0;
+  border-bottom: solid 1px $primary-color;
+  display: inline-block;
+
+}
+
+h1 {
+  @include heading(3.25rem); // 28
+  text-transform: uppercase;
+}
+
+h2 {
+  @include heading(2rem);    // 24
+  text-transform: uppercase;
+}
+
+h3 {
+  @include heading(1.25rem); 
+  @include media(medium-up) {
+  @include heading(1.75rem);   // 20
+  }
+  text-transform: uppercase;
+}
+
+h4, h5, h6 {
+  @include heading(1rem);      // 16
+}

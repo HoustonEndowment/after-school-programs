@@ -2,6 +2,8 @@ import React from 'react'
 import { connect } from 'react-redux'
 import mapboxgl from 'mapbox-gl'
 import centerpoint from 'turf-center'
+import { totalStudents, totalSlots } from '../utils'
+
 import { updateHovered, updateSelected } from '../actions'
 
 const Map = React.createClass({
@@ -19,8 +21,16 @@ const Map = React.createClass({
       style: 'mapbox://styles/mapbox/dark-v9',
       center: centerpoint(this.mapData).geometry.coordinates,
       zoom: 9.5,
-      minZoom: 2
+      minZoom: 2,
+      scrollZoom: false
     })
+
+    this._map.addControl(new mapboxgl.Navigation())
+    this._popup = new mapboxgl.Popup({
+      closeButton: false,
+      closeOnClick: false
+    })
+
     map.on('load', () => {
       const inactiveScale = [[0, '#c0c0c0'], [200000, '#c0c0c0']]
       const hoverScale = [[0, 'rgb(151, 191, 238)'], [200000, 'rgb(151, 191, 238)']]
@@ -35,17 +45,15 @@ const Map = React.createClass({
   },
 
   componentWillReceiveProps: function (nextProps) {
-    const zipCode = nextProps.hovered
-    console.log(zipCode)
-    if (zipCode.length) {
-      this._highlightFeature(zipCode)
+    const hovered = nextProps.hovered
+    if (hovered.length) {
+      this._highlightFeature(hovered)
     } else {
       this._unhighlightFeature()
     }
-  },
-
-  shouldComponentUpdate: function () {
-    return false
+    if (!nextProps.selected) {
+      this._deselectFeature()
+    }
   },
 
   _addData (id, scale, filter) {
@@ -74,30 +82,61 @@ const Map = React.createClass({
   _mapClick: function (e) {
     const features = this._map.queryRenderedFeatures(e.point, { layers: ['zipCodes', 'zipCodes-hover'] })
     if (features.length) {
-      this._map.setFilter('zipCodes-active', ['==', 'zip_code', features[0].properties['zip_code']])
-      this.props.dispatch(updateSelected(String(features[0].properties['zip_code'])))
+      this._selectFeature(features[0].properties['zip_code'])
     } else {
-      this._map.setFilter('zipCodes-active', ['==', 'zip_code', ''])
-      this.props.dispatch(updateSelected(''))
+      this._deselectFeature()
     }
+  },
+
+  _generateTooltip: function (zipProps) {
+    return (
+      `<div class="zipcode panel-subhead"><h2>${zipProps.zip_code}</h2></div>
+        <div class="students-count">
+          <span class="data-number">${totalStudents(zipProps)}</span>
+          <span class="data-description">eligible students</span>
+        </div>
+        <div class="slots-count">
+          <span class="data-number">${totalSlots(zipProps)}</span>
+          <span class="data-description">available program spots</span>
+        </div>`
+    )
   },
 
   _mouseMove: function (e) {
     const features = this._map.queryRenderedFeatures(e.point, { layers: ['zipCodes', 'zipCodes-hover'] })
     if (features.length) {
+      this._map.getCanvas().style.cursor = 'pointer'
       this._highlightFeature(features[0].properties['zip_code'])
     } else {
+      this._map.getCanvas().style.cursor = ''
       this._unhighlightFeature()
     }
   },
 
+  _selectFeature: function (zipCode) {
+    this._map.setFilter('zipCodes-active', ['==', 'zip_code', zipCode])
+    this.props.dispatch(updateSelected(zipCode))
+  },
+
+  _deselectFeature: function () {
+    this._map.setFilter('zipCodes-active', ['==', 'zip_code', ''])
+    this.props.dispatch(updateSelected(''))
+  },
+
   _highlightFeature: function (zipCode) {
+    const feature = this.props.mapData.features.find((feature) => {
+      return feature.properties.zip_code === zipCode
+    })
     this._map.setFilter('zipCodes-hover', ['==', 'zip_code', zipCode])
+    this._popup.setLngLat(centerpoint(feature).geometry.coordinates)
+      .setHTML(this._generateTooltip(feature.properties))
+      .addTo(this._map)
     this.props.dispatch(updateHovered(zipCode))
   },
 
   _unhighlightFeature: function () {
     this._map.setFilter('zipCodes-hover', ['==', 'zip_code', ''])
+    this._popup.remove()
     this.props.dispatch(updateHovered(''))
   },
 
