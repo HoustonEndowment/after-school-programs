@@ -14,8 +14,14 @@
 
 // Top
 .back-link {
-  font-size: 0.75rem;
   margin-bottom: $global-spacing/2;
+  span {
+    font-size: 0.75rem;
+    color: $link-color;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }
 
 .zipcode-title {
@@ -91,14 +97,28 @@
 // Bar chart containers
 .barchart-total {
   float: left;
-  width: 122px;
+  width: 135px;
   height: 61px;
   font-size: 16px;
 }
 
 .barchart-kto5 {
   float: left;
-  width: 122px;
+  width: 135px;
+  height: 61px;
+  font-size: 16px;
+}
+
+.barchart-6to8 {
+  float: left;
+  width: 135px;
+  height: 61px;
+  font-size: 16px;
+}
+
+.barchart-9to12 {
+  float: left;
+  width: 135px;
   height: 61px;
   font-size: 16px;
 }

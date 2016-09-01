@@ -18,7 +18,6 @@ const SideBar = React.createClass({
       return (
         <section className='sidebar'>
           <MainFigure
-            selected={this.props.selected}
             mapData={this.props.mapData}
           />
         </section>
@@ -34,7 +33,8 @@ const SideBar = React.createClass({
 
 function mapStateToProps (state) {
   return {
-    selected: state.selected
+    selected: state.selected,
+    mapData: state.mapData
   }
 }
 
