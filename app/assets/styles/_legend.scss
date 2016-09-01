@@ -4,25 +4,21 @@
 // the file called app/assets/scripts/components/legend.js.
 
 .legend {
-  float: left;
-  width: 100%;
-  padding-bottom: 13px;
-  border-bottom: 1px solid $border-grey;
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
+  width: 250px;
+  background-color: rgb(255, 255, 255);
 }
 
 .legend .legend-title {
-  margin: 25px 8px 15px 8px;
-  width: 85%;
+  p {
+    font-weight: $base-font-bold;
+    margin-bottom: 0.5rem;
+  }
+  margin-top: 0.5rem;
   margin-left: 7.5%;
-  h3 {
-    font-size: 17px;
-    font-weight: 600;
-    margin-bottom: 2px;
-  }
-  h4 {
-    font-size: 13px;
-    font-weight: 400;
-  }
 }
 
 .legend .legend-scale ul {
@@ -40,8 +36,9 @@
   list-style: none;
 }
 
-.legend ul.legend-labels li {
-  font-size: 10px;
+.legend-labels li {
+  font-size: 0.675rem;
+  width: auto;
   &:last-child {
     text-align: right;
   }

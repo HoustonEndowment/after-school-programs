@@ -7,8 +7,7 @@ export default function () {
   return (
     <div className='legend'>
       <div className='legend-title'>
-        <h3>Supply and Demand Index</h3>
-        <h4>This index combines xxx, xxx, xxx, xxx and xxx.</h4>
+        <p>Need Index</p>
       </div>
       <div className='legend-scale'>
       <ul className='legend-labels'>
