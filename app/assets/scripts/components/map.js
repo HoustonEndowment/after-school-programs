@@ -22,8 +22,12 @@ const Map = React.createClass({
       style: 'mapbox://styles/mapbox/dark-v9',
       center: centerpoint(this.mapData).geometry.coordinates,
       zoom: 9.5,
-      minZoom: 2
+      minZoom: 2,
+      scrollZoom: false
     })
+
+    this._map.addControl(new mapboxgl.Navigation())
+
     map.on('load', () => {
       const inactiveScale = [[0, '#c0c0c0'], [200000, '#c0c0c0']]
       const hoverScale = [[0, 'rgb(151, 191, 238)'], [200000, 'rgb(151, 191, 238)']]
@@ -49,9 +53,9 @@ const Map = React.createClass({
     }
   },
 
-  shouldComponentUpdate: function () {
-    return false
-  },
+  // shouldComponentUpdate: function () {
+  //   return false
+  // },
 
   _addData (id, scale, filter) {
     this._map.addSource(id, {
