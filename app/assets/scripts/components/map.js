@@ -38,11 +38,14 @@ const Map = React.createClass({
   },
 
   componentWillReceiveProps: function (nextProps) {
-    const zipCode = nextProps.hovered
-    if (zipCode.length) {
-      this._highlightFeature(zipCode)
+    const hovered = nextProps.hovered
+    if (hovered.length) {
+      this._highlightFeature(hovered)
     } else {
       this._unhighlightFeature()
+    }
+    if (!nextProps.selected) {
+      this._deselectFeature()
     }
   },
 
@@ -76,11 +79,9 @@ const Map = React.createClass({
   _mapClick: function (e) {
     const features = this._map.queryRenderedFeatures(e.point, { layers: ['zipCodes', 'zipCodes-hover'] })
     if (features.length) {
-      this._map.setFilter('zipCodes-active', ['==', 'zip_code', features[0].properties['zip_code']])
-      this.props.dispatch(updateSelected(String(features[0].properties['zip_code'])))
+      this._selectFeature(features[0].properties['zip_code'])
     } else {
-      this._map.setFilter('zipCodes-active', ['==', 'zip_code', ''])
-      this.props.dispatch(updateSelected(''))
+      this._deselectFeature()
     }
   },
 
@@ -91,6 +92,16 @@ const Map = React.createClass({
     } else {
       this._unhighlightFeature()
     }
+  },
+
+  _selectFeature: function (zipCode) {
+    this._map.setFilter('zipCodes-active', ['==', 'zip_code', zipCode])
+    this.props.dispatch(updateSelected(zipCode))
+  },
+
+  _deselectFeature: function () {
+    this._map.setFilter('zipCodes-active', ['==', 'zip_code', ''])
+    this.props.dispatch(updateSelected(''))
   },
 
   _highlightFeature: function (zipCode) {
