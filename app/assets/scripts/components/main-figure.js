@@ -37,10 +37,11 @@ const MainFigure = React.createClass({
     const slots6To8 = zipProps.slots_grade6to8
     const students9To12 = zipProps.students_grade9to12
     const slots9To12 = zipProps.slots_grade9to12
+    const studentsKTo12 = zipProps.students_gradeKto12
+    const slotsKTo12 = zipProps.slots_gradeKto12
     return (
       <div className='main-figure'>
         <div className='main-figure-interior'>
-        <div className='main-figure-top'>
           <div className='back-link' onClick={this._deselectZip}>
             <span>Back to All Areas</span>
           </div>
@@ -99,11 +100,11 @@ const MainFigure = React.createClass({
           <h2 className='panel-subhead'>Grades K-5</h2>
            <div className='barchart-total-horizontal'>
             <BarChartHorizontal
-                students={45}
-                studentPercent={90}
-                slots={70}
-                slotPercent={45}
-                zipCode={'20001'}
+              students={studentsKTo5}
+              studentPercent={studentsKTo5 / highVal * 100}
+              slots={slotsKTo5}
+              slotPercent={slotsKTo5 / highVal * 100}
+              zipCode={zipCode}
               />
             </div>
           <hr className='inner'/>
@@ -111,11 +112,11 @@ const MainFigure = React.createClass({
           <h2 className='panel-subhead'>Grades 6-8</h2>
            <div className='barchart-total-horizontal'>
             <BarChartHorizontal
-                students={45}
-                studentPercent={90}
-                slots={70}
-                slotPercent={45}
-                zipCode={'20001'}
+              students={students6To8}
+              studentPercent={students6To8 / highVal * 100}
+              slots={slots6To8}
+              slotPercent={slots6To8 / highVal * 100}
+              zipCode={zipCode}
               />
             </div>
 
@@ -124,11 +125,11 @@ const MainFigure = React.createClass({
           <h2 className='panel-subhead'>Grades 9-12</h2>
            <div className='barchart-total-horizontal'>
             <BarChartHorizontal
-                students={45}
-                studentPercent={90}
-                slots={70}
-                slotPercent={45}
-                zipCode={'20001'}
+              students={students9To12}
+              studentPercent={students9To12 / highVal * 100}
+              slots={slots9To12}
+              slotPercent={slots9To12 / highVal * 100}
+              zipCode={zipCode}
               />
             </div>
 
@@ -137,41 +138,13 @@ const MainFigure = React.createClass({
           <h2 className='panel-subhead'>Grades K-12</h2>
            <div className='barchart-total-horizontal'>
             <BarChartHorizontal
-                students={45}
-                studentPercent={90}
-                slots={70}
-                slotPercent={45}
-                zipCode={'20001'}
+              students={studentsKTo12}
+              studentPercent={studentsKTo12 / highVal * 100}
+              slots={slotsKTo12}
+              slotPercent={slotsKTo12 / highVal * 100}
+              zipCode={zipCode}
               />
             </div>
-            <div className='barchart-kto5'>
-              <BarChart
-                students={studentsKTo5}
-                studentPercent={studentsKTo5 / highVal * 100}
-                slots={slotsKTo5}
-                slotPercent={slotsKTo5 / highVal * 100}
-                zipCode={zipCode}
-              />
-            </div>
-            <div className='barchart-6to8'>
-              <BarChart
-                students={students6To8}
-                studentPercent={students6To8 / highVal * 100}
-                slots={slots6To8}
-                slotPercent={slots6To8 / highVal * 100}
-                zipCode={zipCode}
-              />
-            </div>
-            <div className='barchart-9to12'>
-              <BarChart
-                students={students9To12}
-                studentPercent={students9To12 / highVal * 100}
-                slots={slots9To12}
-                slotPercent={slots9To12 / highVal * 100}
-                zipCode={zipCode}
-              />
-            </div>
-        </div>
         </div>
       </div>
     )
