@@ -56,6 +56,18 @@ body {
   margin-left: 327px
 }
 
+.mapboxgl-popup {
+  width: 200px;
+  height: 100px;
+  font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  .mapboxgl-popup-tip {
+
+  }
+  .mapboxgl-popup-content {
+      border-radius: 0;
+  }
+}
+
 .sidebar {
   position: relative;
   width: 325px;

@@ -27,6 +27,10 @@ const Map = React.createClass({
     })
 
     this._map.addControl(new mapboxgl.Navigation())
+    this._popup = new mapboxgl.Popup({
+      closeButton: false,
+      closeOnClick: false
+    })
 
     map.on('load', () => {
       const inactiveScale = [[0, '#c0c0c0'], [200000, '#c0c0c0']]
@@ -52,10 +56,6 @@ const Map = React.createClass({
       this._deselectFeature()
     }
   },
-
-  // shouldComponentUpdate: function () {
-  //   return false
-  // },
 
   _addData (id, scale, filter) {
     this._map.addSource(id, {
@@ -92,8 +92,15 @@ const Map = React.createClass({
   _mouseMove: function (e) {
     const features = this._map.queryRenderedFeatures(e.point, { layers: ['zipCodes', 'zipCodes-hover'] })
     if (features.length) {
+      this._map.getCanvas().style.cursor = 'pointer'
+      this._popup.setLngLat(centerpoint(features[0]).geometry.coordinates)
+        .setHTML(features[0].properties.zip_code)
+        .addTo(this._map)
+
       this._highlightFeature(features[0].properties['zip_code'])
     } else {
+      this._popup.remove()
+      this._map.getCanvas().style.cursor = ''
       this._unhighlightFeature()
     }
   },
