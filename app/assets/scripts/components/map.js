@@ -2,9 +2,12 @@ import React from 'react'
 import { connect } from 'react-redux'
 import mapboxgl from 'mapbox-gl'
 import centerpoint from 'turf-center'
+import chroma from 'chroma-js'
 import { totalStudents, totalSlots } from '../utils'
 
 import { updateHovered, updateSelected } from '../actions'
+
+const scale = chroma.scale(['white', 'black'])
 
 const Map = React.createClass({
   propTypes: {
@@ -32,7 +35,14 @@ const Map = React.createClass({
     })
 
     map.on('load', () => {
-      const inactiveScale = [[0, '#c0c0c0'], [200000, '#c0c0c0']]
+      let inactiveScale = []
+      for (let i = 0; i < 13; i++) {
+        inactiveScale.push([93 + i, scale(i / 12).hex()])
+      }
+      const features = this.mapData.features.forEach((f) => {
+        console.log(f)
+      })
+      // const inactiveScale = [[0, '#c0c0c0'], [200000, '#c0c0c0']]
       const hoverScale = [[0, 'rgb(151, 191, 238)'], [200000, 'rgb(151, 191, 238)']]
       const activeScale = [[0, '#ff0000'], [200000, '#ff0000']]
 

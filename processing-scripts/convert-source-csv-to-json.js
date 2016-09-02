@@ -8,12 +8,12 @@ const process = require('process')
 
 const [source, dest] = process.argv.slice(2, 4)
 let lines = fs.readFileSync(source, 'utf-8').split('\n')
-const categories = lines.shift().split(',').splice(1)
+const categories = lines.shift().split(',').splice(1).replace('\r', '')
 
 let outputdata = {}
 lines.forEach((line, lineI) => {
   const columns = line.split(',')
-  if (columns.length === 23) {
+  if (columns.length === 16) {
     const zipcode = columns.shift()
     outputdata[zipcode] = {}
     columns.forEach((column, columnI) => {
