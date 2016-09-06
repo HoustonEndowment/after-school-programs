@@ -60,18 +60,28 @@ const MainFigure = React.createClass({
       let totalSlotPercent = studentsTotal / highValTotal * 100
       totalStudentPercent = (isNaN(totalStudentPercent)) ? 0 : totalStudentPercent
       totalSlotPercent = (isNaN(totalSlotPercent)) ? 0 : totalSlotPercent
-
-      console.log(`ZIP Code: ${zip}: ${studentsTotal/slotsTotal*100}`)
-
-
-
-
     })
 
     const mainFigureCharts = (zipCode !== '77373')
       ? (
         <div>
           <hr className='inner'/>
+          <div className='grade-breakdown'>
+            <h2 className='panel-subhead'>All Grade Levels</h2>
+            <dl className='summary-stat'>
+              <dt className='total-programs data-number'>5</dt>
+              <dd className='data-description'>After-school programs</dd>
+            </dl>
+            <div className='barchart-total'>
+              <BarChart
+                students={studentsTotal}
+                studentPercent={totalStudentPercent}
+                slots={slotsTotal}
+                slotPercent={totalSlotPercent}
+                zipCode={zipCode}
+              />
+            </div>
+          </div>
           <h2 className='panel-subhead'>Grades K-5</h2>
           <div className='barchart-total-horizontal'>
           <BarChartHorizontal
@@ -117,7 +127,7 @@ const MainFigure = React.createClass({
           </div>
         </div>
       )
-      : 'No Dice!'
+      : `There are no after school programs in ${zipCode}`
 
     return (
       <div className='main-figure'>
@@ -129,12 +139,12 @@ const MainFigure = React.createClass({
               Supply and demand for {zipProps.zip_code}
             </h1>
             <dl className='dl-horizontal'>
-              <dt className='med-income data-number'>$??,???</dt>
+              <dt className='med-income data-number'>{'$' + zipProps.median_income.toLocaleString()}</dt>
               <dd className='data-description'>Median Income</dd>
             </dl>
             <dl className='summary-stat'>
               <dt className='fam-below-poverty data-number'>
-                {zipProps['families_below_poverty (percentage)']}%
+                {zipProps['families_below_poverty(percentage)']}%
               </dt>
               <dd className='data-description'>Families Below Poverty</dd>
             </dl>
@@ -157,22 +167,6 @@ const MainFigure = React.createClass({
               <dd className='data-description'>Feeder Schools</dd>
             </dl>
             <hr className='section'/>
-            <div className='grade-breakdown'>
-              <h2 className='panel-subhead'>All Grade Levels</h2>
-              <dl className='summary-stat'>
-                <dt className='total-programs data-number'>5</dt>
-                <dd className='data-description'>After-school programs</dd>
-              </dl>
-              <div className='barchart-total'>
-                <BarChart
-                  students={studentsTotal}
-                  studentPercent={totalStudentPercent}
-                  slots={slotsTotal}
-                  slotPercent={totalSlotPercent}
-                  zipCode={zipCode}
-                />
-              </div>
-            </div>
           {mainFigureCharts}
         </div>
       </div>
