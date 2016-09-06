@@ -15,10 +15,10 @@ const Map = React.createClass({
   },
   componentDidMount: function () {
     this.mapData = this.props.mapData
-    mapboxgl.accessToken = 'pk.eyJ1IjoibmJ1bWJhcmciLCJhIjoiWG1NN1BlYyJ9.nbifRhdBcN1K-mdtwwi0eQ'
+    mapboxgl.accessToken = 'pk.eyJ1IjoiYXNjYWxhbW9nbmEiLCJhIjoiM29weEZXayJ9.0Wpp3KbmiRcR_0YCFktCow'
     const map = this._map = new mapboxgl.Map({
       container: 'map',
-      style: 'mapbox://styles/mapbox/dark-v9',
+      style: 'mapbox://styles/ascalamogna/cipygxsfc003kbcnmpdi6yahx',
       center: centerpoint(this.mapData).geometry.coordinates,
       zoom: 9.5,
       minZoom: 2,
@@ -32,7 +32,7 @@ const Map = React.createClass({
     })
 
     map.on('load', () => {
-      const inactiveScale = [[0, '#c0c0c0'], [200000, '#c0c0c0']]
+      const inactiveScale = [[0, '#BE7721'], [200000, '#BE7721']]
       const hoverScale = [[0, 'rgb(151, 191, 238)'], [200000, 'rgb(151, 191, 238)']]
       const activeScale = [[0, '#ff0000'], [200000, '#ff0000']]
 
@@ -90,7 +90,7 @@ const Map = React.createClass({
 
   _generateTooltip: function (zipProps) {
     return (
-      `<div class="zipcode panel-subhead"><h2>${zipProps.zip_code}</h2></div>
+      `<div><h2 class="zipcode panel-subhead">${zipProps.zip_code}</h2></div>
         <div class="students-count">
           <span class="data-number">${totalStudents(zipProps)}</span>
           <span class="data-description">eligible students</span>

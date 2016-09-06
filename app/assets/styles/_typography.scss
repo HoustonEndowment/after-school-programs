@@ -9,7 +9,7 @@ p, ul, ol, dl, pre, blockquote {
 p {
   font-weight: $base-font-light;
   font-family: $body-font-family;
-  color: tint($base-color, 20%);
+  color: tint($base-color, 50%);
 }
 
 a {
@@ -73,9 +73,10 @@ dt {
 }
 
 .data-description {
-  font-size: 0.875rem;
+  font-size: 0.75rem;
   font-weight: $base-font-regular;
   font-family: $base-font-family;
+  color: tint($base-color, 40%);
 }
 
 dd {
@@ -229,8 +230,8 @@ blockquote {
 }
 
 h1 {
-  @include heading(3.25rem); // 28
-  text-transform: uppercase;
+  @include heading(3rem); // 28
+/*  text-transform: uppercase;*/
 }
 
 h2 {

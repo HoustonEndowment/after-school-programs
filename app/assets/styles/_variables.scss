@@ -17,17 +17,31 @@ $base-alpha-color: rgba($base-color, 0.12);
 /* ==========================================================================
    Typography
    ========================================================================== */
+/* then for WOFF-capable browsers */
+@font-face {
+  font-family: Didot;
+  src: url("../fonts/320242_0_0.woff") format("woff");
+  font-weight: 400;
+}
+
+/* then for WOFF-capable browsers */
+@font-face {
+  font-family: Didot;
+  src: url("../fonts/320242_0_1.woff") format("woff");
+  font-weight: 700;
+}
+
 
 $base-font-color: $base-color;
-$base-font-family: 'Lato', Helvetica, Arial, sans-serif;
+$base-font-family: Arial, Helvetica, sans-serif;
 $base-font-style: normal;
 $base-font-light: 300;
 $base-font-regular: 400;
 $base-font-bold: 700;
 $base-font-weight: $base-font-regular;
 
-$display-font-family: 'Playfair Display SC', 'Georgia', serif;
-$body-font-family: 'Lato', Helvetica, Arial, sans-serif;
+$display-font-family: 'Didot', 'Georgia', serif;
+$body-font-family: Arial, Helvetica,  sans-serif;
 
 /* ==========================================================================
    Decoration

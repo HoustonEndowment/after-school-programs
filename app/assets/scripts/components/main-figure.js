@@ -152,6 +152,20 @@ const MainFigure = React.createClass({
               zipCode={zipCode}
               />
             </div>
+
+          <hr className='section'/>
+
+          <dl>
+            <dt className='total-funding data-number'>$508,091</dt>
+            <dd className='data-description'>total funding for programs</dd>
+          </dl>
+
+          <hr className='section'/>
+
+          <dl>
+            <dt className='public-transit data-number'>5</dt>
+            <dd className='data-description'>Public transportation routes available within 0.5 mile radius </dd>
+          </dl>
         </div>
       </div>
     )

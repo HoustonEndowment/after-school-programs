@@ -14,12 +14,12 @@
 
 // Top
 .back-link {
-  margin-bottom: $global-spacing/2;
   span {
     font-size: 0.75rem;
     color: $link-color;
+    text-decoration: underline;
     &:hover {
-      text-decoration: underline;
+      color: tint($link-color, 30%);
     }
   }
 }
@@ -27,7 +27,16 @@
 .zipcode-title {
   font-size: 1.25rem;
   line-height: 1.5rem;
+  margin-top: $global-spacing;
   font-weight: $base-font-regular;
+}
+
+.zipcode-title-chart {
+  font-weight: $base-font-regular;
+  font-size: 1.25rem;
+  line-height: 1.5rem;
+  margin-top: $global-spacing * 5;
+  margin-left: $global-spacing * 1.75;
 }
 
 .small-text {
@@ -133,12 +142,12 @@
   height: 61px;
   font-size: 16px;
   .barchart-stats {
-    width: 40%;
+    width: 50%;
     float: left;
   }
   .bars {
     width: 50%;
-    margin-left: $global-spacing/2;
+/*    margin-left: $global-spacing/2;*/
   }
   .students-bar {
     height: 60%;
