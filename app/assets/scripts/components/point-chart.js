@@ -22,14 +22,8 @@ const PointChart = React.createClass({
 
     const chartData = { datasets:
       this.metrics.map((metrics) => {
-        const totalSlots = metrics.slots_gradeKto5 +
-              metrics.slots_grade6to8 +
-              metrics.slots_grade9to12 +
-              metrics.slots_gradeKto12
-        const totalStudents = metrics.students_gradeKto5 +
-              metrics.students_grade6to8 +
-              metrics.students_grade9to12 +
-              metrics.students_gradeKto12
+        const totalSlots = metrics.total_slots
+        const totalStudents = metrics.schoolage_children
 
         if (totalSlots > highestSlots) highestSlots = totalSlots
         if (totalStudents > highestStudents) highestStudents = totalStudents

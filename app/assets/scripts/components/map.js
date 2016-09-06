@@ -7,8 +7,6 @@ import { totalStudents, totalSlots } from '../utils'
 
 import { updateHovered, updateSelected } from '../actions'
 
-const scale = chroma.scale(['white', 'black'])
-
 const Map = React.createClass({
   propTypes: {
     mapData: React.PropTypes.object,
@@ -35,16 +33,9 @@ const Map = React.createClass({
     })
 
     map.on('load', () => {
-      let inactiveScale = []
-      for (let i = 0; i < 13; i++) {
-        inactiveScale.push([93 + i, scale(i / 12).hex()])
-      }
-      const features = this.mapData.features.forEach((f) => {
-        console.log(f)
-      })
-      // const inactiveScale = [[0, '#c0c0c0'], [200000, '#c0c0c0']]
-      const hoverScale = [[0, 'rgb(151, 191, 238)'], [200000, 'rgb(151, 191, 238)']]
-      const activeScale = [[0, '#ff0000'], [200000, '#ff0000']]
+      const inactiveScale = this._buildColorscale('white', 'black', 0, 100, 10)
+      const hoverScale = this._buildColorscale('white', 'blue', 0, 100, 10)
+      const activeScale = this._buildColorscale('white', 'red', 0, 100, 10)
 
       this._addData('zipCodes', inactiveScale, ['!=', 'zip_code', ''])
       this._addData('zipCodes-hover', hoverScale, ['==', 'zip_code', ''])
@@ -66,6 +57,16 @@ const Map = React.createClass({
     }
   },
 
+  _buildColorscale: function (clr1, clr2, lowRange, upRange, interval) {
+    const scale = chroma.scale([clr1, clr2])
+    let scaleArr = []
+    for (let i = lowRange; i < upRange + 1;) {
+      scaleArr.push([0 + i, scale(i / upRange).hex()])
+      i += interval
+    }
+    return scaleArr
+  },
+
   _addData (id, scale, filter) {
     this._map.addSource(id, {
       type: 'geojson',
@@ -75,18 +76,16 @@ const Map = React.createClass({
       'id': id,
       'type': 'fill',
       'source': id,
-      'interactive': true,
-      'maxzoom': 18,
       'filter': filter,
       'paint': {
         'fill-color': {
-          'property': 'cap',
-          'stops': scale
+          property: 'slots_schoolage_ratio',
+          stops: scale
         },
         'fill-opacity': 1,
         'fill-outline-color': 'white'
       }
-    })
+    }, 'waterway-label')
   },
 
   _mapClick: function (e) {

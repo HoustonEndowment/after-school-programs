@@ -21,6 +21,8 @@ let attrGeom = srcGeom.features.map((feature) => {
                      src.slots_grade6to8 + src.slots_grade9to12
   feature.properties = src
   feature.properties['zip_code'] = zipCode
+  feature.properties['total_students'] = totalStudents
+  feature.properties['total_slots'] = totalSlots
   feature.properties['students_slots_ratio'] = Number((totalStudents / totalSlots * 100).toFixed(2))
   feature.properties['schoolage_slots_ratio'] = Number((src.schoolage_children / totalSlots * 100).toFixed(2))
   feature.properties['schoolage_students_ratio'] = Number((src.schoolage_children / totalStudents * 100).toFixed(2))
