@@ -16,11 +16,12 @@ const Map = React.createClass({
   },
   componentDidMount: function () {
     this.mapData = this.props.mapData
+    this.mapCenter = centerpoint(this.mapData).geometry.coordinates
     mapboxgl.accessToken = 'pk.eyJ1IjoibmJ1bWJhcmciLCJhIjoiWG1NN1BlYyJ9.nbifRhdBcN1K-mdtwwi0eQ'
     const map = this._map = new mapboxgl.Map({
       container: 'map',
       style: 'mapbox://styles/mapbox/dark-v9',
-      center: centerpoint(this.mapData).geometry.coordinates,
+      center: this.mapCenter,
       zoom: 9.5,
       minZoom: 2,
       scrollZoom: false
@@ -52,7 +53,10 @@ const Map = React.createClass({
     } else {
       this._unhighlightFeature()
     }
-    if (!nextProps.selected) {
+    const selected = nextProps.selected
+    if (selected) {
+      this._selectFeature(selected)
+    } else {
       this._deselectFeature()
     }
   },
@@ -124,11 +128,22 @@ const Map = React.createClass({
 
   _selectFeature: function (zipCode) {
     this._map.setFilter('zipCodes-active', ['==', 'zip_code', zipCode])
+    const feature = this.props.mapData.features.find((feature) => {
+      return feature.properties.zip_code === zipCode
+    })
+    this._map.flyTo({
+      center: centerpoint(feature).geometry.coordinates,
+      zoom: 10
+    })
     this.props.dispatch(updateSelected(zipCode))
   },
 
   _deselectFeature: function () {
     this._map.setFilter('zipCodes-active', ['==', 'zip_code', ''])
+    this._map.flyTo({
+      center: this.mapCenter,
+      zoom: 9.5
+    })
     this.props.dispatch(updateSelected(''))
   },
 
