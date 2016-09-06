@@ -79,7 +79,7 @@ const Map = React.createClass({
       'filter': filter,
       'paint': {
         'fill-color': {
-          property: 'slots_schoolage_ratio',
+          property: 'slots_students_ratio',
           stops: scale
         },
         'fill-opacity': 1,
