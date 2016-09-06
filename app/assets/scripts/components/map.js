@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import mapboxgl from 'mapbox-gl'
 import centerpoint from 'turf-center'
+import chroma from 'chroma-js'
 import { totalStudents, totalSlots } from '../utils'
 
 import { updateHovered, updateSelected } from '../actions'
@@ -15,11 +16,12 @@ const Map = React.createClass({
   },
   componentDidMount: function () {
     this.mapData = this.props.mapData
-    mapboxgl.accessToken = 'pk.eyJ1IjoibmJ1bWJhcmciLCJhIjoiWG1NN1BlYyJ9.nbifRhdBcN1K-mdtwwi0eQ'
+    this.mapCenter = centerpoint(this.mapData).geometry.coordinates
+    mapboxgl.accessToken = 'pk.eyJ1IjoiYXNjYWxhbW9nbmEiLCJhIjoiM29weEZXayJ9.0Wpp3KbmiRcR_0YCFktCow'
     const map = this._map = new mapboxgl.Map({
       container: 'map',
-      style: 'mapbox://styles/mapbox/dark-v9',
-      center: centerpoint(this.mapData).geometry.coordinates,
+      style: 'mapbox://styles/ascalamogna/cisrq5dhg004p2xvrilk14hyx',
+      center: this.mapCenter,
       zoom: 9.5,
       minZoom: 2,
       scrollZoom: false
@@ -32,13 +34,26 @@ const Map = React.createClass({
     })
 
     map.on('load', () => {
-      const inactiveScale = [[0, '#c0c0c0'], [200000, '#c0c0c0']]
-      const hoverScale = [[0, 'rgb(151, 191, 238)'], [200000, 'rgb(151, 191, 238)']]
-      const activeScale = [[0, '#ff0000'], [200000, '#ff0000']]
+      let inactiveScale = chroma.scale(['rgb(246, 209, 164)', 'rgb(222, 122, 0)'])
+      inactiveScale = [
+        [65, inactiveScale(0).hex()],
+        [73.5, inactiveScale(0.25).hex()],
+        [82, inactiveScale(0.5).hex()],
+        [90.5, inactiveScale(0.75).hex()],
+        [100, inactiveScale(1).hex()]
+      ]
+      let hoverScale = chroma.scale(['rgb(246, 209, 164)', 'rgb(222, 122, 0)'])
+      hoverScale = [
+        [65, hoverScale(0).darken(0.5).hex()],
+        [73.5, hoverScale(0.25).darken(0.5).hex()],
+        [82, hoverScale(0.5).darken(0.5).hex()],
+        [90.5, hoverScale(0.75).darken(0.5).hex()],
+        [100, hoverScale(1).darken(0.5).hex()]
+      ]
 
       this._addData('zipCodes', inactiveScale, ['!=', 'zip_code', ''])
       this._addData('zipCodes-hover', hoverScale, ['==', 'zip_code', ''])
-      this._addData('zipCodes-active', activeScale, ['==', 'zip_code', ''])
+      this._addOutlineData('zipCodes-active', ['==', 'zip_code', ''])
       map.on('mousemove', this._mouseMove)
       map.on('click', this._mapClick)
     })
@@ -51,9 +66,22 @@ const Map = React.createClass({
     } else {
       this._unhighlightFeature()
     }
-    if (!nextProps.selected) {
+    const selected = nextProps.selected
+    if (selected) {
+      this._selectFeature(selected)
+    } else {
       this._deselectFeature()
     }
+  },
+
+  _buildColorscale: function (clr1, clr2, lowRange, upRange, interval) {
+    const scale = chroma.scale([clr1, clr2])
+    let scaleArr = []
+    for (let i = lowRange; i < upRange + 1;) {
+      scaleArr.push([0 + i, scale(i / upRange).hex()])
+      i += interval
+    }
+    return scaleArr
   },
 
   _addData (id, scale, filter) {
@@ -65,16 +93,31 @@ const Map = React.createClass({
       'id': id,
       'type': 'fill',
       'source': id,
-      'interactive': true,
-      'maxzoom': 18,
       'filter': filter,
       'paint': {
         'fill-color': {
-          'property': 'cap',
-          'stops': scale
+          property: 'need_index',
+          stops: scale
         },
         'fill-opacity': 1,
         'fill-outline-color': 'white'
+      }
+    })
+  },
+
+  _addOutlineData (id, filter) {
+    this._map.addSource(id, {
+      type: 'geojson',
+      data: this.mapData
+    })
+    this._map.addLayer({
+      'id': id,
+      'type': 'line',
+      'source': id,
+      'filter': filter,
+      'paint': {
+        'line-color': 'rgb(255, 51, 204)',
+        'line-width': 3
       }
     })
   },
@@ -90,7 +133,7 @@ const Map = React.createClass({
 
   _generateTooltip: function (zipProps) {
     return (
-      `<div class="zipcode panel-subhead"><h2>${zipProps.zip_code}</h2></div>
+      `<div><h2 class="zipcode-tooltip">Zipcode: <span class="data-number">${zipProps.zip_code}</span></h2></div>
         <div class="students-count">
           <span class="data-number">${totalStudents(zipProps)}</span>
           <span class="data-description">eligible students</span>
@@ -115,11 +158,22 @@ const Map = React.createClass({
 
   _selectFeature: function (zipCode) {
     this._map.setFilter('zipCodes-active', ['==', 'zip_code', zipCode])
+    const feature = this.props.mapData.features.find((feature) => {
+      return feature.properties.zip_code === zipCode
+    })
+    this._map.flyTo({
+      center: centerpoint(feature).geometry.coordinates,
+      zoom: 10
+    })
     this.props.dispatch(updateSelected(zipCode))
   },
 
   _deselectFeature: function () {
     this._map.setFilter('zipCodes-active', ['==', 'zip_code', ''])
+    this._map.flyTo({
+      center: this.mapCenter,
+      zoom: 9.5
+    })
     this.props.dispatch(updateSelected(''))
   },
 

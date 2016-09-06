@@ -4,7 +4,7 @@ body {
 
 .header-container{
   background-image: url('../graphics/layout/colored-bar.svg');
-  background-size: 100% 10px;
+  background-size: 100% 15px;
   background-repeat: no-repeat;
   background-position: top;
   @include col(12/12);
@@ -12,8 +12,22 @@ body {
 
 .header {
   position: relative;
-  padding: ($global-spacing * 8) 0;
+  padding: ($global-spacing * 4) 0;
+  @include media(medium-up) {
+    padding: ($global-spacing * 8) 0;
+  }
   @include col(10/12, $offset: 1/12);
+  h1 {
+    font-size: 2rem;
+    line-height: 2.5rem;
+    @include media(medium-up) {
+      font-size: 3rem;
+      line-height: 3.5rem;
+    }
+  }
+  p {
+    line-height: 1.25rem;
+  }
 }
 
 .header-copy {
@@ -27,16 +41,22 @@ body {
 }
 
 .footer-sources {
-  @include col(8/12);
+  @include col(12/12);
   font-size: 0.875rem;
+  @include media(medium-up) {
+    @include col(8/12);
+  }
 }
 
 .footer-links {
-  @include col(4/12);
   a {
     @include col(12/12);
     margin-right: 0;
     line-height: 2rem;
+  }
+  @include col(12/12);
+  @include media(medium-up) {
+    @include col(4/12);
   }
 }
 
@@ -68,7 +88,6 @@ body {
   width: 325px;
   height: 100%;
   float: left;
-  border-right: 1px solid $border-grey;
 }
 
 .summary-stat {

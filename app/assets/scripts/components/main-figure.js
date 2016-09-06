@@ -2,8 +2,8 @@
 
 import React from 'react'
 import { connect } from 'react-redux'
-import { totalStudents, totalSlots } from '../utils'
 
+import { totalStudents, totalSlots } from '../utils'
 import { updateSelected } from '../actions'
 
 import BarChart from './main-figure-bar-chart'
@@ -33,6 +33,8 @@ const MainFigure = React.createClass({
       return feature.properties.zip_code === zipCode
     }).properties
     const highVal = this._getHighestValue(zipProps)
+    const studentsTotal = totalStudents(zipProps)
+    const slotsTotal = totalSlots(zipProps)
     const studentsKTo5 = zipProps.students_gradeKto5
     const slotsKTo5 = zipProps.slots_gradeKto5
     const students6To8 = zipProps.students_grade6to8
@@ -41,10 +43,79 @@ const MainFigure = React.createClass({
     const slots9To12 = zipProps.slots_grade9to12
     const studentsKTo12 = zipProps.students_gradeKto12
     const slotsKTo12 = zipProps.slots_gradeKto12
-
-    const studentsTotal = totalStudents(zipProps)
-    const slotsTotal = totalSlots(zipProps)
     const highValTotal = Math.max(studentsTotal, slotsTotal)
+
+    let totalStudentPercent = studentsTotal / highValTotal * 100
+    let totalSlotPercent = studentsTotal / highValTotal * 100
+    totalStudentPercent = (isNaN(totalStudentPercent)) ? 0 : totalStudentPercent
+    totalSlotPercent = (isNaN(totalSlotPercent)) ? 0 : totalSlotPercent
+
+    const mainFigureCharts = (zipCode !== '77373')
+      ? (
+        <div>
+          <hr className='inner'/>
+          <div className='grade-breakdown'>
+            <h2 className='panel-subhead'>All Grade Levels</h2>
+            <dl className='summary-stat'>
+              <dt className='total-programs data-number'>5</dt>
+              <dd className='data-description'>After-school programs</dd>
+            </dl>
+            <div className='barchart-total'>
+              <BarChart
+                students={studentsTotal}
+                studentPercent={totalStudentPercent}
+                slots={slotsTotal}
+                slotPercent={totalSlotPercent}
+                zipCode={zipCode}
+              />
+            </div>
+          </div>
+          <h2 className='panel-subhead'>Grades K-5</h2>
+          <div className='barchart-total-horizontal'>
+          <BarChartHorizontal
+            students={studentsKTo5}
+            studentPercent={studentsKTo5 / highVal * 100}
+            slots={slotsKTo5}
+            slotPercent={slotsKTo5 / highVal * 100}
+            zipCode={zipCode}
+            />
+          </div>
+          <hr className='inner'/>
+          <h2 className='panel-subhead'>Grades 6-8</h2>
+          <div className='barchart-total-horizontal'>
+          <BarChartHorizontal
+            students={students6To8}
+            studentPercent={students6To8 / highVal * 100}
+            slots={slots6To8}
+            slotPercent={slots6To8 / highVal * 100}
+            zipCode={zipCode}
+            />
+          </div>
+          <hr className='inner'/>
+          <h2 className='panel-subhead'>Grades 9-12</h2>
+          <div className='barchart-total-horizontal'>
+          <BarChartHorizontal
+            students={students9To12}
+            studentPercent={students9To12 / highVal * 100}
+            slots={slots9To12}
+            slotPercent={slots9To12 / highVal * 100}
+            zipCode={zipCode}
+            />
+          </div>
+          <hr className='inner'/>
+          <h2 className='panel-subhead'>Grades K-12</h2>
+          <div className='barchart-total-horizontal'>
+          <BarChartHorizontal
+            students={studentsKTo12}
+            studentPercent={studentsKTo12 / highVal * 100}
+            slots={slotsKTo12}
+            slotPercent={slotsKTo12 / highVal * 100}
+            zipCode={zipCode}
+            />
+          </div>
+        </div>
+      )
+      : `There are no after school programs in ${zipCode}`
 
     return (
       <div className='main-figure'>
@@ -56,12 +127,12 @@ const MainFigure = React.createClass({
               Supply and demand for {zipProps.zip_code}
             </h1>
             <dl className='dl-horizontal'>
-              <dt className='med-income data-number'>$??,???</dt>
+              <dt className='med-income data-number'>{'$' + zipProps.median_income.toLocaleString()}</dt>
               <dd className='data-description'>Median Income</dd>
             </dl>
             <dl className='summary-stat'>
               <dt className='fam-below-poverty data-number'>
-                {zipProps['families_below_poverty (percentage)']}%
+                {zipProps['families_below_poverty(percentage)']}%
               </dt>
               <dd className='data-description'>Families Below Poverty</dd>
             </dl>
@@ -83,75 +154,18 @@ const MainFigure = React.createClass({
               </dt>
               <dd className='data-description'>Feeder Schools</dd>
             </dl>
-
             <hr className='section'/>
-            <div className='grade-breakdown'>
-              <h2 className='panel-subhead'>All Grade Levels</h2>
-              <dl className='summary-stat'>
-                <dt className='total-programs data-number'>5</dt>
-                <dd className='data-description'> After-school programs</dd>
-              </dl>
-              <div className='barchart-total'>
-                <BarChart
-                  students={studentsTotal}
-                  studentPercent={studentsTotal / highValTotal * 100}
-                  slots={slotsTotal}
-                  slotPercent={slotsTotal / highValTotal * 100}
-                  zipCode={'20001'}
-                />
-              </div>
-            </div>
-
-          <hr className='inner'/>
-
-          <h2 className='panel-subhead'>Grades K-5</h2>
-           <div className='barchart-total-horizontal'>
-            <BarChartHorizontal
-              students={studentsKTo5}
-              studentPercent={studentsKTo5 / highVal * 100}
-              slots={slotsKTo5}
-              slotPercent={slotsKTo5 / highVal * 100}
-              zipCode={zipCode}
-              />
-            </div>
-          <hr className='inner'/>
-
-          <h2 className='panel-subhead'>Grades 6-8</h2>
-           <div className='barchart-total-horizontal'>
-            <BarChartHorizontal
-              students={students6To8}
-              studentPercent={students6To8 / highVal * 100}
-              slots={slots6To8}
-              slotPercent={slots6To8 / highVal * 100}
-              zipCode={zipCode}
-              />
-            </div>
-
-          <hr className='inner'/>
-
-          <h2 className='panel-subhead'>Grades 9-12</h2>
-           <div className='barchart-total-horizontal'>
-            <BarChartHorizontal
-              students={students9To12}
-              studentPercent={students9To12 / highVal * 100}
-              slots={slots9To12}
-              slotPercent={slots9To12 / highVal * 100}
-              zipCode={zipCode}
-              />
-            </div>
-
-          <hr className='inner'/>
-
-          <h2 className='panel-subhead'>Grades K-12</h2>
-           <div className='barchart-total-horizontal'>
-            <BarChartHorizontal
-              students={studentsKTo12}
-              studentPercent={studentsKTo12 / highVal * 100}
-              slots={slotsKTo12}
-              slotPercent={slotsKTo12 / highVal * 100}
-              zipCode={zipCode}
-              />
-            </div>
+          {mainFigureCharts}
+          <hr className='section'/>
+          <dl>
+            <dt className='total-funding data-number'>{'$' + zipProps.total_funding.toLocaleString()}</dt>
+            <dd className='data-description'>total funding for programs</dd>
+          </dl>
+          <hr className='section'/>
+          <dl>
+            <dt className='public-transit data-number'>{zipProps['public_transport_distance(#ofroutesavailablewithin1/2amile)']}</dt>
+            <dd className='data-description'>Public transportation routes available within 0.5 mile radius </dd>
+          </dl>
         </div>
       </div>
     )

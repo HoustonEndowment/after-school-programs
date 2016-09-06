@@ -55,7 +55,7 @@ gulp.task('default', ['clean'], function () {
   gulp.start('build');
 });
 
-gulp.task('serve', ['vendorScripts', 'javascript', 'styles', 'fonts'], function () {
+gulp.task('serve', ['vendorScripts', 'javascript', 'styles', 'fonts', 'data'], function () {
   browserSync({
     port: 3000,
     server: {
@@ -159,7 +159,7 @@ gulp.task('vendorScripts', function () {
 // ----------------------------------------------------------------------------//
 
 gulp.task('build', ['vendorScripts', 'javascript'], function () {
-  gulp.start(['html', 'images', 'fonts', 'extras'], function () {
+  gulp.start(['html', 'images', 'fonts', 'data', 'extras'], function () {
     return gulp.src('dist/**/*')
       .pipe($.size({title: 'build', gzip: true}))
       .pipe(exit());
@@ -229,6 +229,12 @@ gulp.task('fonts', function () {
   return gulp.src('app/assets/fonts/**/*')
     .pipe(gulp.dest('.tmp/assets/fonts'))
     .pipe(gulp.dest('dist/assets/fonts'));
+});
+
+gulp.task('data', function () {
+  return gulp.src('app/assets/data/*')
+    .pipe(gulp.dest('.tmp/assets/data'))
+    .pipe(gulp.dest('dist/assets/data'));
 });
 
 gulp.task('extras', function () {

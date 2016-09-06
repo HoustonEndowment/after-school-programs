@@ -1,9 +1,30 @@
 .mapboxgl-popup {
   width: auto;
   height: auto;
-  opacity: 0.85;
+  opacity: 0.96;
+  .panel-subhead {
+  	font-size: 1.25rem;
+  	font-family: $display-font-family;
+  	border-bottom: solid 1px tint($secondary-color, 40%);
+  	padding-bottom: $global-spacing/2;
+  }
+  .students-count {
+  	padding-bottom: $global-spacing/2;
+  	margin-top: 0;
+  }
+  .data-number {
+  	font-size: 1rem;
+  }
   .mapboxgl-popup-tip {
   }
   .mapboxgl-popup-content {
   }
+  .zipcode-tooltip{
+  	font-family: $base-font-family;
+  	font-weight: $base-font-bold;
+  	font-size: 1rem;
+  	text-transform: capitalize;
+  	border-bottom: solid 1px tint($base-color, 80%);
+  }
+
 }

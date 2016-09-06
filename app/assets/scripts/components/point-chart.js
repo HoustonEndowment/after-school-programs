@@ -22,23 +22,16 @@ const PointChart = React.createClass({
 
     const chartData = { datasets:
       this.metrics.map((metrics) => {
-        const totalSlots = metrics.slots_gradeKto5 +
-              metrics.slots_grade6to8 +
-              metrics.slots_grade9to12 +
-              metrics.slots_gradeKto12
-        const totalStudents = metrics.students_gradeKto5 +
-              metrics.students_grade6to8 +
-              metrics.students_grade9to12 +
-              metrics.students_gradeKto12
+        const totalSlots = metrics.total_slots
+        const totalStudents = metrics.total_students
 
         if (totalSlots > highestSlots) highestSlots = totalSlots
         if (totalStudents > highestStudents) highestStudents = totalStudents
 
         return {
           label: metrics.zip_code,
-          data: [{x: totalSlots, y: totalStudents, r: 10}],
+          data: [{x: totalSlots, y: totalStudents, r: 5}],
           hoverRadius: 4,
-          borderColor: 'rgb(151, 151, 151)',
           backgroundColor: 'rgb(216, 216, 216)',
           hoverBackgroundColor: 'rgb(151, 191, 238)'
         }
@@ -111,8 +104,9 @@ const PointChart = React.createClass({
         <div className='chart-slots-label'>
           Available Slots in Programs
         </div>
+        <h1 className='zipcode-title-chart'>Supply and Demand By Zipcode</h1>
         <div id='chart-container'>
-          <canvas id='chart'></canvas>
+          <canvas id='chart' height='600px'></canvas>
         </div>
       </div>
     )
