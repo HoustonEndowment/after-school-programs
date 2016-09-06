@@ -19,5 +19,12 @@
   }
   .mapboxgl-popup-content {
   }
+  .zipcode-tooltip{
+  	font-family: $base-font-family;
+  	font-weight: $base-font-bold;
+  	font-size: 1rem;
+  	text-transform: capitalize;
+  	border-bottom: solid 1px tint($base-color, 80%);
+  }
 
 }

@@ -18,7 +18,7 @@ const Map = React.createClass({
     mapboxgl.accessToken = 'pk.eyJ1IjoiYXNjYWxhbW9nbmEiLCJhIjoiM29weEZXayJ9.0Wpp3KbmiRcR_0YCFktCow'
     const map = this._map = new mapboxgl.Map({
       container: 'map',
-      style: 'mapbox://styles/ascalamogna/cipygxsfc003kbcnmpdi6yahx',
+      style: 'mapbox://styles/ascalamogna/cisrq5dhg004p2xvrilk14hyx',
       center: centerpoint(this.mapData).geometry.coordinates,
       zoom: 9.5,
       minZoom: 2,
@@ -90,7 +90,7 @@ const Map = React.createClass({
 
   _generateTooltip: function (zipProps) {
     return (
-      `<div><h2 class="zipcode panel-subhead">${zipProps.zip_code}</h2></div>
+      `<div><h2 class="zipcode-tooltip">Zipcode: <span class="data-number">${zipProps.zip_code}</span></h2></div>
         <div class="students-count">
           <span class="data-number">${totalStudents(zipProps)}</span>
           <span class="data-description">eligible students</span>
