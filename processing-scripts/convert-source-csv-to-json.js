@@ -13,7 +13,7 @@ const categories = lines.shift().split(',').splice(1)
 let outputdata = {}
 lines.forEach((line, lineI) => {
   const columns = line.split(',')
-  if (columns.length === 16) {
+  if (columns.length === 19) {
     const zipcode = columns.shift()
     outputdata[zipcode] = {}
     columns.forEach((column, columnI) => {
