@@ -36,7 +36,7 @@
   font-size: 1.25rem;
   line-height: 1.5rem;
   margin-top: $global-spacing * 5;
-  margin-left: $global-spacing * 1.75;
+  @include col(8/12, $offset:1/12);
 }
 
 .small-text {
