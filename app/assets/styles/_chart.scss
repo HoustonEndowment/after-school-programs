@@ -3,8 +3,8 @@
 // will need to force the chart to redraw by manually refreshing the page.
 // Many additional chart style options are necessarily defined within the
 // chartOptions object in app/assets/scripts/components/point-chart.js.
-$base-height: 600px;
-$bottom: 40px;
+$base-height: 500px;
+$bottom: 250px;
 
 #main-chart-container {
   position: absolute;
@@ -26,9 +26,9 @@ $bottom: 40px;
   font-weight: 500;
   color: $chart-labels;
   position: absolute;
-  top: $base-height / 3.65;
+  top: $base-height / 3.6;
   left: 27px;
-  font-size: 13px;
+  font-size: 0.675rem;
 }
 
 .chart-slots-label {
@@ -36,7 +36,7 @@ $bottom: 40px;
   font-weight: 500;
   color: $chart-labels;
   position: absolute;
-  bottom: 0;
+  bottom: 0px;
   width: 100%;
-  font-size: 13px;
+  font-size: 0.675rem;
 }

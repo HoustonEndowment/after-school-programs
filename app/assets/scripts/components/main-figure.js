@@ -50,18 +50,6 @@ const MainFigure = React.createClass({
     totalStudentPercent = (isNaN(totalStudentPercent)) ? 0 : totalStudentPercent
     totalSlotPercent = (isNaN(totalSlotPercent)) ? 0 : totalSlotPercent
 
-    this.props.mapData.features.forEach((f) => {
-      const zipProps = f.properties
-      const zip = zipProps.zip_code
-      const studentsTotal = totalStudents(zipProps)
-      const slotsTotal = totalSlots(zipProps)
-      const highVal = this._getHighestValue(zipProps)
-      let totalStudentPercent = studentsTotal / highValTotal * 100
-      let totalSlotPercent = studentsTotal / highValTotal * 100
-      totalStudentPercent = (isNaN(totalStudentPercent)) ? 0 : totalStudentPercent
-      totalSlotPercent = (isNaN(totalSlotPercent)) ? 0 : totalSlotPercent
-    })
-
     const mainFigureCharts = (zipCode !== '77373')
       ? (
         <div>
@@ -168,6 +156,16 @@ const MainFigure = React.createClass({
             </dl>
             <hr className='section'/>
           {mainFigureCharts}
+          <hr className='section'/>
+          <dl>
+            <dt className='total-funding data-number'>{'$' + zipProps.total_funding.toLocaleString()}</dt>
+            <dd className='data-description'>total funding for programs</dd>
+          </dl>
+          <hr className='section'/>
+          <dl>
+            <dt className='public-transit data-number'>{zipProps['public_transport_distance(#ofroutesavailablewithin1/2amile)']}</dt>
+            <dd className='data-description'>Public transportation routes available within 0.5 mile radius </dd>
+          </dl>
         </div>
       </div>
     )

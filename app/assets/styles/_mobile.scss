@@ -1,3 +1,21 @@
+// FUNCTIONS
+
+// RANGES
+// We use these functions to define ranges for various things, like media queries.
+@function lower-bound($range){
+  @if length($range) <= 0 {
+    @return 0;
+  }
+  @return nth($range,1);
+}
+
+@function upper-bound($range) {
+  @if length($range) < 2 {
+    @return 999999999999;
+  }
+  @return nth($range, 2);
+}
+
 $xsmall-range: (0, 543px);
 $small-range: (544px, 767px);
 $medium-range: (768px, 991px);
@@ -57,87 +75,16 @@ $screen: "only screen";
     @media #{$screen} and (min-width: lower-bound($xxlarge-range)) { @content; }
   }
 }
-
-@include media(large-up) {
-  #map {
-    float:left;
+.sidebar {
+  @include media(small-only) {
     width: 100%;
-  }
-  .sidebar {
     float: left;
-    width: 100%;
-    background-color: red;
   }
 }
 
-
-// /* iPhone 4 Portrait */
-// @media only screen
-//   and (min-device-width: 320px)
-//   and (max-device-width: 480px)
-//   and (-webkit-min-device-pixel-ratio: 2)
-//   and (orientation: portrait) {
-// }
-//
-// /* iPhone 5 Portrait */
-// @media only screen
-//   and (min-device-width: 320px)
-//   and (max-device-width: 568px)
-//   and (-webkit-min-device-pixel-ratio: 2)
-//   and (orientation: portrait) {
-// }
-//
-// /* iPhone 6 Portrait */
-// @media only screen
-//   and (min-device-width: 375px)
-//   and (max-device-width: 667px)
-//   and (-webkit-min-device-pixel-ratio: 2)
-//   and (orientation: portrait) {
-//
-// }
-//
-// /* iPhone 6+ Portrait */
-// @media only screen
-//   and (min-device-width: 414px)
-//   and (max-device-width: 736px)
-//   and (-webkit-min-device-pixel-ratio: 3)
-//   and (orientation: portrait) {
-//
-// }
-//
-// /* Galaxy S3 Portrait */
-// @media screen
-//   and (device-width: 320px)
-//   and (device-height: 640px)
-//   and (-webkit-device-pixel-ratio: 2)
-//   and (orientation: portrait) {
-//
-// }
-//
-// /* Galaxy S4 Portrait */
-// @media screen
-//   and (device-width: 320px)
-//   and (device-height: 640px)
-//   and (-webkit-device-pixel-ratio: 3)
-//   and (orientation: portrait) {
-//
-// }
-//
-// /* Galaxy S5 Portrait */
-// @media screen
-//   and (device-width: 360px)
-//   and (device-height: 640px)
-//   and (-webkit-device-pixel-ratio: 3)
-//   and (orientation: portrait) {
-//
-// }
-//
-// /* Galaxy S6 and S7 */
-// @media screen
-//   and (device-width: 360px)
-//   and (device-height: 640px)
-//   and (-webkit-min-device-pixel-ratio : 4)
-//   and (-webkit-device-pixel-ratio : 4)
-//   and (orientation: portrait) {
-//
-// }
+#map {
+  @include media(small-only) {
+    width: 100%;
+    float: left;
+  }
+}

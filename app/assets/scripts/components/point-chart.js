@@ -30,9 +30,8 @@ const PointChart = React.createClass({
 
         return {
           label: metrics.zip_code,
-          data: [{x: totalSlots, y: totalStudents, r: 10}],
+          data: [{x: totalSlots, y: totalStudents, r: 5}],
           hoverRadius: 4,
-          borderColor: 'rgb(151, 151, 151)',
           backgroundColor: 'rgb(216, 216, 216)',
           hoverBackgroundColor: 'rgb(151, 191, 238)'
         }
@@ -105,8 +104,9 @@ const PointChart = React.createClass({
         <div className='chart-slots-label'>
           Available Slots in Programs
         </div>
+        <h1 className='zipcode-title-chart'>Supply and Demand By Zipcode</h1>
         <div id='chart-container'>
-          <canvas id='chart'></canvas>
+          <canvas id='chart' height='600px'></canvas>
         </div>
       </div>
     )
