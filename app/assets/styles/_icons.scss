@@ -1,0 +1,65 @@
+/* ==========================================================================
+   Icon font: collecticons
+   ========================================================================== */
+
+/**
+ * Generated with collecticons-processor on September 6, 2016
+ * http://collecticons.io/
+ */
+
+
+@font-face {
+  font-family: "collecticons";
+  src: url('../font/collecticons.eot');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+
+@font-face {
+  font-family: "collecticons";
+
+  src: url('../font/collecticons.ttf');
+
+
+  src: url('../font/collecticons.woff');
+
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+%collecticon,
+[class^="collecticon-"],
+[class*=" collecticon-"] {
+  speak: none;
+  font-family: "collecticons";
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better font rendering */
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
+%collecticon-facebook {
+  @extend %collecticon;
+  content: "\EA01"
+}
+.collecticon-facebook:before {
+  content: "\EA01"
+}
+
+%collecticon-twitter {
+  @extend %collecticon;
+  content: "\EA02"
+}
+.collecticon-twitter:before {
+  content: "\EA02"
+}
