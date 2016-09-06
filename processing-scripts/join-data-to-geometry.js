@@ -14,8 +14,10 @@ srcGeom = JSON.parse(fs.readFileSync(srcGeom, 'utf-8'))
 
 let attrGeom = srcGeom.features.map((feature) => {
   const zipCode = feature.properties.zip_code
-  feature.properties = srcAttr[zipCode]
-  feature.properties['zip_code'] = zipCode
+  const src = srcAttr[zipCode]
+  feature.properties = src
+  feature.properties['zipcode'] = zipCode
+  feature.properties['slots_students_ratio'] = Number((src.total_slots / src.total_students * 100).toFixed(2))
   return feature
 })
 srcGeom.features = attrGeom

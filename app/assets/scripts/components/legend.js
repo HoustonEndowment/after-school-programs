@@ -1,7 +1,7 @@
 import React from 'react'
 import chroma from 'chroma-js'
 
-const scale = chroma.scale(['#F2F2F2', '#686868'])
+const scale = chroma.scale(['#FCE7CE', '#DE7A00'])
 
 export default function () {
   return (
