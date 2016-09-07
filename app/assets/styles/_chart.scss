@@ -7,11 +7,15 @@ $base-height: 500px;
 $bottom: 250px;
 
 #main-chart-container {
-  position: absolute;
-  bottom: $bottom;
+  position: relative;
+  bottom: 0;
   left: 0;
   @include col(12/12);
   height: $base-height;
+  @include media(medium-up){
+    position: absolute;
+    bottom: $bottom;
+  }
 }
 
 #chart-container {

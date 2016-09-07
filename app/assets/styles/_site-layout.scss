@@ -21,12 +21,12 @@ body {
     font-size: 2rem;
     line-height: 2.5rem;
     @include media(medium-up) {
-      font-size: 3rem;
-      line-height: 3.5rem;
+      font-size: 2rem;
+      line-height: 2.5rem;
     }
   }
   p {
-    line-height: 1.25rem;
+    line-height: 1.5rem;
   }
 }
 
@@ -36,35 +36,21 @@ body {
 }
 
 .footer {
-  padding: ($global-spacing * 2) 0 ($global-spacing * 4) 0;
-  @include col(11/12, $offset: 0.5/12);
+  padding: ($global-spacing * 4) ($global-spacing * 2);
+  @include col(9/12);
 }
 
 .footer-sources {
   @include col(12/12);
   font-size: 0.875rem;
-  @include media(medium-up) {
-    @include col(8/12);
-  }
 }
 
-.footer-links {
-  a {
-    @include col(12/12);
-    margin-right: 0;
-    line-height: 2rem;
-  }
-  @include col(12/12);
-  @include media(medium-up) {
-    @include col(4/12);
-  }
-}
 
 .content {
   position: relative;
   @include col(12/12);
   float: none;
-  height: 700px;
+  height: auto;
   border-bottom: solid 1px tint($base-color, 80%);
   border-top: solid 1px tint($base-color, 80%);
   @include media(medium-up) {
