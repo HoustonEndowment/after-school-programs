@@ -81,7 +81,7 @@ body {
 }
 
 .map-container {
-  height: 300px;
+  height: 400px;
   @include col(12/12);
   position: relative;
   @include media(medium-up) {

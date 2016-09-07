@@ -15,6 +15,10 @@ const Map = React.createClass({
     dispatch: React.PropTypes.func
   },
   componentDidMount: function () {
+    this.zoom = 9.5
+    if (window.innerWidth < 768) {
+      this.zoom = 8.75
+    }
     this.mapData = this.props.mapData
     this.mapCenter = centerpoint(this.mapData).geometry.coordinates
     mapboxgl.accessToken = 'pk.eyJ1IjoiYXNjYWxhbW9nbmEiLCJhIjoiM29weEZXayJ9.0Wpp3KbmiRcR_0YCFktCow'
@@ -22,7 +26,7 @@ const Map = React.createClass({
       container: 'map',
       style: 'mapbox://styles/ascalamogna/cisrq5dhg004p2xvrilk14hyx',
       center: this.mapCenter,
-      zoom: 9.5,
+      zoom: this.zoom,
       minZoom: 2,
       scrollZoom: false
     })
@@ -172,7 +176,7 @@ const Map = React.createClass({
     this._map.setFilter('zipCodes-active', ['==', 'zip_code', ''])
     this._map.flyTo({
       center: this.mapCenter,
-      zoom: 9.5
+      zoom: this.zoom
     })
     this.props.dispatch(updateSelected(''))
   },
