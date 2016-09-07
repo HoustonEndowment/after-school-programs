@@ -18,8 +18,8 @@ body {
   }
   @include col(10/12, $offset: 1/12);
   h1 {
-    font-size: 1rem;
-    line-height: 1.5rem;
+    font-size: 2rem;
+    line-height: 2.5rem;
     @include media(medium-up) {
       font-size: 2rem;
       line-height: 2.5rem;
