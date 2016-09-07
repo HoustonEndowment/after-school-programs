@@ -63,3 +63,9 @@
 .collecticon-twitter:before {
   content: "\EA02"
 }
+
+.collecticon {
+  color: $primary-color;
+  margin: 0 ($global-spacing/4);
+  font-size: 1.25rem;
+}

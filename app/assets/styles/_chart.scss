@@ -10,14 +10,14 @@ $bottom: 250px;
   position: absolute;
   bottom: $bottom;
   left: 0;
-  width: 325px;
+  @include col(12/12);
   height: $base-height;
 }
 
 #chart-container {
   position: absolute;
   bottom: 30px;
-  width: 275px;
+  @include col(10/12, $offset: -1/12);
   height: $base-height - ($base-height / 5);
   margin-left: 17px;
 }

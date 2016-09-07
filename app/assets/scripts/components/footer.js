@@ -17,8 +17,7 @@ export default function () {
       </div>
       <div className='footer-links'>
         <h1 className='heading-alt'>More Information</h1>
-        <a href='#methodology'>View Our Methodology</a>
-        <a href='#contact'>Contact Us</a>
+        <a href='http://houstonendowment.org'>Contact Us</a>
       </div>
     </div>
   )

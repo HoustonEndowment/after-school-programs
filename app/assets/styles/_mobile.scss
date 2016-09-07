@@ -75,16 +75,3 @@ $screen: "only screen";
     @media #{$screen} and (min-width: lower-bound($xxlarge-range)) { @content; }
   }
 }
-.sidebar {
-  @include media(small-only) {
-    width: 100%;
-    float: left;
-  }
-}
-
-#map {
-  @include media(small-only) {
-    width: 100%;
-    float: left;
-  }
-}
