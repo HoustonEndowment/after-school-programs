@@ -18,15 +18,15 @@ body {
   }
   @include col(10/12, $offset: 1/12);
   h1 {
-    font-size: 2rem;
-    line-height: 2.5rem;
+    font-size: 1rem;
+    line-height: 1.5rem;
     @include media(medium-up) {
-      font-size: 3rem;
-      line-height: 3.5rem;
+      font-size: 2rem;
+      line-height: 2.5rem;
     }
   }
   p {
-    line-height: 1.25rem;
+    line-height: 1.5rem;
   }
 }
 
@@ -37,7 +37,8 @@ body {
 
 .footer {
   padding: ($global-spacing * 2) 0 ($global-spacing * 4) 0;
-  @include col(11/12, $offset: 0.5/12);
+  @include col(12/12);
+  margin-left: $global-spacing;
 }
 
 .footer-sources {
@@ -64,7 +65,7 @@ body {
   position: relative;
   @include col(12/12);
   float: none;
-  height: 700px;
+  height: auto;
   border-bottom: solid 1px tint($base-color, 80%);
   border-top: solid 1px tint($base-color, 80%);
   @include media(medium-up){
