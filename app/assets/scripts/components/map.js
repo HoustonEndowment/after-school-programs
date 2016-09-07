@@ -40,19 +40,19 @@ const Map = React.createClass({
     map.on('load', () => {
       let inactiveScale = chroma.scale(['rgb(246, 209, 164)', 'rgb(222, 122, 0)'])
       inactiveScale = [
-        [65, inactiveScale(0).hex()],
-        [73.5, inactiveScale(0.25).hex()],
+        [65, inactiveScale(1).hex()],
+        [73.5, inactiveScale(0.75).hex()],
         [82, inactiveScale(0.5).hex()],
-        [90.5, inactiveScale(0.75).hex()],
-        [100, inactiveScale(1).hex()]
+        [90.5, inactiveScale(0.25).hex()],
+        [100, inactiveScale(0).hex()]
       ]
       let hoverScale = chroma.scale(['rgb(246, 209, 164)', 'rgb(222, 122, 0)'])
       hoverScale = [
-        [65, hoverScale(0).darken(0.5).hex()],
-        [73.5, hoverScale(0.25).darken(0.5).hex()],
+        [65, hoverScale(1).darken(0.5).hex()],
+        [73.5, hoverScale(0.75).darken(0.5).hex()],
         [82, hoverScale(0.5).darken(0.5).hex()],
-        [90.5, hoverScale(0.75).darken(0.5).hex()],
-        [100, hoverScale(1).darken(0.5).hex()]
+        [90.5, hoverScale(0.25).darken(0.5).hex()],
+        [100, hoverScale(0).darken(0.5).hex()]
       ]
 
       this._addData('zipCodes', inactiveScale, ['!=', 'zip_code', ''])

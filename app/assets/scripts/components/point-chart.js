@@ -63,14 +63,16 @@ const PointChart = React.createClass({
 
   _setDotColor: function (needIndex) {
     let inactiveScale = chroma.scale(['rgb(246, 209, 164)', 'rgb(222, 122, 0)'])
-    if (needIndex <= 73.5) {
-      return inactiveScale(0).hex()
-    } else if (needIndex > 73.5 && needIndex <= 82) {
-      return inactiveScale(0.25).hex()
-    } else if (needIndex > 82 && needIndex <= 90.5) {
-      return inactiveScale(0.75).hex()
-    } else {
+    if (needIndex <= 65) {
       return inactiveScale(1).hex()
+    } else if (needIndex > 65 && needIndex <= 73.5) {
+      return inactiveScale(0.75).hex()
+    } else if (needIndex > 73.5 && needIndex <= 82) {
+      return inactiveScale(0.5).hex()
+    } else if (needIndex > 82 && needIndex <= 90.5) {
+      return inactiveScale(0.25).hex()
+    } else {
+      return inactiveScale(0).hex()
     }
   },
 
