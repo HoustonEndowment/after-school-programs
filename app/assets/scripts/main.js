@@ -33,9 +33,9 @@ const App = React.createClass({
       <div className='app'>
         <Header />
         <div className='content'>
-          <SideBar />
           <Legend />
           <Map />
+          <SideBar />
         </div>
         <Footer />
       </div>

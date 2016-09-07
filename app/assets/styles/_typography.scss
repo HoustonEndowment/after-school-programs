@@ -134,7 +134,6 @@ blockquote {
   height: 1px;
   background: $base-alpha-color;
   width: 100%;
-  max-width: 16rem;
   margin: ($global-spacing) 0;
 }
 
@@ -143,7 +142,6 @@ blockquote {
   height: 1px;
   background: tint($secondary-color, 40%);
   width: 100%;
-  max-width: 16rem;
   margin: ($global-spacing) 0;
 }
 

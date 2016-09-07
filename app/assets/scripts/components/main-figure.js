@@ -53,7 +53,6 @@ const MainFigure = React.createClass({
     const mainFigureCharts = (zipCode !== '77373')
       ? (
         <div>
-          <hr className='inner'/>
           <div className='grade-breakdown'>
             <h2 className='panel-subhead'>All Grade Levels</h2>
             <dl className='summary-stat'>
@@ -70,6 +69,7 @@ const MainFigure = React.createClass({
               />
             </div>
           </div>
+          <hr className='inner'/>
           <h2 className='panel-subhead'>Grades K-5</h2>
           <div className='barchart-total-horizontal'>
           <BarChartHorizontal
@@ -127,14 +127,14 @@ const MainFigure = React.createClass({
               Supply and demand for {zipProps.zip_code}
             </h1>
             <dl className='dl-horizontal'>
-              <dt className='med-income data-number'>{'$' + zipProps.median_income.toLocaleString()}</dt>
-              <dd className='data-description'>Median Income</dd>
-            </dl>
-            <dl className='summary-stat'>
               <dt className='fam-below-poverty data-number'>
                 {zipProps['families_below_poverty(percentage)']}%
               </dt>
               <dd className='data-description'>Families Below Poverty</dd>
+            </dl>
+            <dl className='summary-stat'>
+              <dt className='med-income data-number'>{'$' + zipProps.median_income.toLocaleString()}</dt>
+              <dd className='data-description'>Median Income</dd>
             </dl>
             <dl className='summary-stat'>
               <dt className='school-aged-children data-number'>

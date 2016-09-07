@@ -116,8 +116,8 @@ const Map = React.createClass({
       'source': id,
       'filter': filter,
       'paint': {
-        'line-color': 'rgb(255, 51, 204)',
-        'line-width': 3
+        'line-color': 'rgb(0, 0, 0)',
+        'line-width': 2
       }
     })
   },
@@ -195,7 +195,7 @@ const Map = React.createClass({
   },
 
   render: function () {
-    return <div id='map' className='map' />
+    return <div className='map-container'><div id='map' className='map' /></div>
   }
 })
 
