@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Chart from 'chart.js'
+import chroma from 'chroma-js'
 
 import { chartOptions } from '../constants'
 
@@ -24,6 +25,7 @@ const PointChart = React.createClass({
       this.metrics.map((metrics) => {
         const totalSlots = metrics.total_slots
         const totalStudents = metrics.total_students
+        const needIndex = metrics.need_index
 
         if (totalSlots > highestSlots) highestSlots = totalSlots
         if (totalStudents > highestStudents) highestStudents = totalStudents
@@ -31,9 +33,9 @@ const PointChart = React.createClass({
         return {
           label: metrics.zip_code,
           data: [{x: totalSlots, y: totalStudents, r: 5}],
-          hoverRadius: 4,
-          backgroundColor: 'rgb(216, 216, 216)',
-          hoverBackgroundColor: 'rgb(151, 191, 238)'
+          hoverRadius: 0,
+          backgroundColor: this._setDotColor(needIndex),
+          hoverBackgroundColor: this._setDotColor(needIndex)
         }
       })
     }
@@ -59,12 +61,27 @@ const PointChart = React.createClass({
     }
   },
 
+  _setDotColor: function (needIndex) {
+    let inactiveScale = chroma.scale(['rgb(246, 209, 164)', 'rgb(222, 122, 0)'])
+    if (needIndex <= 65) {
+      return inactiveScale(1).hex()
+    } else if (needIndex > 65 && needIndex <= 73.5) {
+      return inactiveScale(0.75).hex()
+    } else if (needIndex > 73.5 && needIndex <= 82) {
+      return inactiveScale(0.5).hex()
+    } else if (needIndex > 82 && needIndex <= 90.5) {
+      return inactiveScale(0.25).hex()
+    } else {
+      return inactiveScale(0).hex()
+    }
+  },
+
   _highlightChart: function (zipCode) {
     this.chart.config.data.datasets.forEach((element) => {
       if (element.label === zipCode) {
-        element.backgroundColor = 'rgb(151, 191, 238)'
+        element.data[0].r = 9
       } else {
-        element.backgroundColor = 'rgb(216, 216, 216)'
+        element.data[0].r = 5
       }
       this.chart.update()
     })
@@ -72,7 +89,7 @@ const PointChart = React.createClass({
 
   _unhighlightChart: function () {
     this.chart.config.data.datasets.forEach((element) => {
-      element.backgroundColor = 'rgb(216, 216, 216)'
+      element.data[0].r = 5
       this.chart.update()
     })
   },
