@@ -71,8 +71,11 @@ body {
   @include col(12/12);
   position: relative;
   @include media(medium-up) {
-    @include shift($ratios: 4/12, $col_or_span: column, $gutter: $jeet-gutter)
-    @include col(8/12);
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin: 0;
+    width: calc(100% - 325px);
     height: 700px;
   }
 }
@@ -90,12 +93,10 @@ body {
   height: 100%;
   float: left;
   @include media(medium-up) {
-    @include shift($ratios: -8/12, $col_or_span: column, $gutter: $jeet-gutter)
-    position: relative;
-    @include col(4/12);
-    height: 100%;
-    float: left;
-    margin-right: 0;
+    position: absolute;
+    width: 325px;
+    left: 0;
+    top: 0;
   }
 }
 

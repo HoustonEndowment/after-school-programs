@@ -136,15 +136,13 @@ const Map = React.createClass({
   },
 
   _generateTooltip: function (zipProps) {
+    let underserved = totalStudents(zipProps) - totalSlots(zipProps)
+    underserved = (underserved < 0) ? 0 : underserved
     return (
       `<div><h2 class="zipcode-tooltip">Zipcode: <span class="data-number">${zipProps.zip_code}</span></h2></div>
         <div class="students-count">
-          <span class="data-number">${totalStudents(zipProps)}</span>
-          <span class="data-description">eligible students</span>
-        </div>
-        <div class="slots-count">
-          <span class="data-number">${totalSlots(zipProps)}</span>
-          <span class="data-description">available program spots</span>
+          <span class="data-number">${underserved}</span>
+          <span class="data-description">underserved students</span>
         </div>`
     )
   },
