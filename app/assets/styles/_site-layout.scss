@@ -90,12 +90,12 @@ body {
   height: 100%;
   float: left;
   @include media(medium-up) {
-  @include shift($ratios: -8/12, $col_or_span: column, $gutter: $jeet-gutter)
-  position: relative;
-  @include col(4/12);
-  height: 100%;
-  float: left;
-  margin-right: 0;
+    @include shift($ratios: -8/12, $col_or_span: column, $gutter: $jeet-gutter)
+    position: relative;
+    @include col(4/12);
+    height: 100%;
+    float: left;
+    margin-right: 0;
   }
 }
 
