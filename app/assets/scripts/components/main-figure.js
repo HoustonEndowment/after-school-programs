@@ -6,8 +6,6 @@ import { connect } from 'react-redux'
 import { totalStudents, totalSlots } from '../utils'
 import { updateSelected } from '../actions'
 
-import BarChart from './main-figure-bar-chart'
-import BarChartHorizontal from './main-figure-bar-chart-horizontal'
 import LinePlot from './main-figure-line-plot'
 
 const MainFigure = React.createClass({
