@@ -129,10 +129,10 @@ const MainFigure = React.createClass({
       <div className='main-figure'>
         <div className='main-figure-interior'>
           <div className='back-link' onClick={this._deselectZip}>
-            <span>Back to All Areas</span>
+            <span>Close Zipcode Details</span>
           </div>
             <h1 className='zipcode-title'>
-              Supply and demand for {zipProps.zip_code}
+              Supply and Demand for {zipProps.zip_code}
             </h1>
             <section className='main-stats'>
               <dl className='dl-horizontal'>
@@ -142,9 +142,10 @@ const MainFigure = React.createClass({
                 <dd className='data-description'>Families Below Poverty</dd>
               </dl>
               <dl className='dl-horizontal'>
-                <dt className='total-programs data-number'>5</dt>
-                <dd className='data-description'>After-school programs</dd>
+                <dt className='total-programs data-number'>{zipProps.total_programs}</dt>
+                <dd className='data-description'>Out-of-School Time Programs</dd>
               </dl>
+              <hr className='inner'/>
               <dl className='dl-horizontal'>
                 <dt className='med-income data-number'>{'$' + zipProps.median_income.toLocaleString()}</dt>
                 <dd className='data-description'>Median Income</dd>
@@ -153,8 +154,9 @@ const MainFigure = React.createClass({
                 <dt className='school-aged-children data-number'>
                   {zipProps.schoolage_children.toLocaleString()}
                 </dt>
-                <dd className='data-description'>Total School Aged Children</dd>
+                <dd className='data-description'>Total School-Aged Children</dd>
               </dl>
+              <hr className='inner'/>
               <dl className='dl-horizontal'>
                 <dt className='dropout-factories data-number'>
                   {zipProps.dropout_factories}
@@ -167,22 +169,21 @@ const MainFigure = React.createClass({
                 </dt>
                 <dd className='data-description'>Feeder Schools</dd>
               </dl>
+              <hr className='inner'/>
+              <dl className='dl-horizontal stat-full'>
+                <dt className='total-funding data-number'>{'$' + zipProps.total_funding.toLocaleString()}</dt>
+                <dd className='data-description'>total funding for programs</dd>
+              </dl>
+              <dl className='dl-horizontal stat-full'>
+                <dt className='public-transit data-number'>{zipProps['public_transport_distance(#ofroutesavailablewithin1/2amile)']}</dt>
+                <dd className='data-description'>Public transportation routes available within 0.5 mile radius </dd>
+              </dl>
             </section>
           <hr className='section'/>
           <h2 className='secondary-title'>
-              Gap Between Eligable students and Available Program Slots
+              Gap Between Eligible Students and Available Program Slots
           </h2>
           {mainFigureCharts}
-          <hr className='section'/>
-          <dl className='dl-horizontal stat-full'>
-            <dt className='total-funding data-number'>{'$' + zipProps.total_funding.toLocaleString()}</dt>
-            <dd className='data-description'>total funding for programs</dd>
-          </dl>
-          <hr className='section'/>
-          <dl className='dl-horizontal stat-full'>
-            <dt className='public-transit data-number'>{zipProps['public_transport_distance(#ofroutesavailablewithin1/2amile)']}</dt>
-            <dd className='data-description'>Public transportation routes available within 0.5 mile radius </dd>
-          </dl>
         </div>
       </div>
     )
