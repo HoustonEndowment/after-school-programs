@@ -68,7 +68,7 @@ dt {
   font-size: 1.25rem;
   line-height: 1.5rem;
   color: $secondary-color;
-  font-weight: $base-font-regular;
+  font-weight: $base-font-bold;
   font-family: $base-font-family;
 }
 
@@ -90,29 +90,41 @@ dt {
 
 dd {
   margin-bottom: $global-spacing / 2;
-  font-size: 0.875rem;
+  font-size: 0.75rem;
 }
 
 .dl-horizontal {
   font-family: $base-font-family;
+  @include col(5/12, $offset: 0.5/12);
   @extend .clearfix;
+  padding-top: 1.5rem;
+  padding-bottom: 2.25rem;
   margin-bottom: 0;
+  height: 2rem;
   dt, dd {
     float: left;
   }
   dt {
+    width: 100%;
     clear: left;
+    font-size: 1.25rem;
+    line-height: 0.375rem;
     padding-top: $global-spacing / 8;
-    padding-bottom: $global-spacing / 8;
     padding-right: $global-spacing / 2;
     width: auto;
   }
   dd {
+    width: 90%;
     padding-top: $global-spacing / 4;
+    font-size: 0.75rem;
+    line-height: 1rem;
   }
   dd + dd {
     margin-left: 32%;
   }
+}
+.dl-horizontal:nth-child(3n-2) {
+  border-right: solid 1px tint($base-color, 95%);
 }
 
 .stat-full {
@@ -154,6 +166,13 @@ blockquote {
   width: 100%;
   margin: ($global-spacing) 0;
   float: left;
+}
+
+.main-stats {
+  .inner {
+    margin: 0;
+    background: tint($base-color, 95%);
+  }
 }
 
 .section {
@@ -246,15 +265,24 @@ blockquote {
   margin-bottom: 0;
 }
 
+.share-container  {
+  @include center(150px);
+}
+
 .share {
   color: $primary-color;
   text-transform: uppercase;
-  padding: $global-spacing 0;
-  border-bottom: solid 1px $primary-color;
+  margin: $global-spacing/2;
+  padding-right: $global-spacing;
   display: inline-block;
+  float: left;
+  border-right: solid 1px;
 }
 
 .share-icons {
+  float: left;
+  margin-top: $global-spacing/2;
+  margin-left: $global-spacing/4;
   a {
     text-decoration: none;
     :hover {
