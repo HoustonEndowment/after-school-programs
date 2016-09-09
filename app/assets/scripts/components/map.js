@@ -31,7 +31,7 @@ const Map = React.createClass({
       scrollZoom: false
     })
 
-    this._map.addControl(new mapboxgl.Navigation())
+    this._map.addControl(new mapboxgl.Navigation({position: 'bottom-right'}))
     this._popup = new mapboxgl.Popup({
       closeButton: false,
       closeOnClick: false

@@ -25,6 +25,7 @@
 
 .main-stats {
   float: left;
+  padding-bottom: $global-spacing * 2;
 }
 
 .zipcode-title {
@@ -188,7 +189,7 @@
     width: 10px;
     border-radius: 10px;
     background-color: $primary-color;
-    opacity: 0.8;
+    opacity: 0.75;
   }
   .student-dot {
     position: absolute;
@@ -196,7 +197,7 @@
     width: 10px;
     border-radius: 10px;
     background-color: $infographic-b-color;
-    opacity: 0.8;
+    opacity: 0.75;
   }
 
   .slots-count {

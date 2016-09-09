@@ -4,7 +4,7 @@ body {
 
 .header-container{
   background-image: url('../graphics/layout/colored-bar.svg');
-  background-size: 100% 15px;
+  background-size: 100% 10px;
   background-repeat: no-repeat;
   background-position: top;
   @include col(12/12);
@@ -12,9 +12,9 @@ body {
 
 .header {
   position: relative;
-  padding: ($global-spacing * 4) 0;
+  padding: ($global-spacing * 3) 0;
   @include media(medium-up) {
-    padding: ($global-spacing * 8) 0;
+    padding: ($global-spacing * 4) 0;
   }
   @include col(10/12, $offset: 1/12);
   h1 {
@@ -33,6 +33,10 @@ body {
 .header-copy {
   text-align: center;
   position: relative;
+  @include col(12/12);
+  @include media(medium-up) {
+    @include col(9/12, $offset: 1.5/12)
+  }
 }
 
 .footer {
