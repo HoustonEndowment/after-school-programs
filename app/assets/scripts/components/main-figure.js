@@ -49,7 +49,7 @@ const MainFigure = React.createClass({
     totalStudentPercent = (isNaN(totalStudentPercent)) ? 0 : totalStudentPercent
     totalSlotPercent = (isNaN(totalSlotPercent)) ? 0 : totalSlotPercent
 
-    const mainFigureCharts = (zipCode !== '77373')
+    const mainFigureCharts = (zipCode !== 'NaN')
       ? (
         <div>
           <div className='grade-breakdown'>
@@ -184,6 +184,7 @@ const MainFigure = React.createClass({
               Gap Between Eligible Students and Available Program Slots
           </h2>
           {mainFigureCharts}
+          <hr className='inner'/>
         </div>
       </div>
     )
