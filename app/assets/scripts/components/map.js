@@ -20,13 +20,6 @@ const Map = React.createClass({
       this.zoom = 8.75
     }
     this.mapData = this.props.mapData
-    this.mapData.features.forEach((zipData) => {
-      zipData = zipData.properties
-      if (zipData.zip_code === '77088' || zipData.zip_code === '77045') {
-        console.log(zipData.zipCode)
-        console.log(zipData)
-      }
-    })
     this.mapCenter = centerpoint(this.mapData).geometry.coordinates
     mapboxgl.accessToken = 'pk.eyJ1IjoiYXNjYWxhbW9nbmEiLCJhIjoiM29weEZXayJ9.0Wpp3KbmiRcR_0YCFktCow'
     const map = this._map = new mapboxgl.Map({
@@ -144,11 +137,6 @@ const Map = React.createClass({
 
   _generateTooltip: function (zipProps) {
     let underserved = totalStudents(zipProps) - totalSlots(zipProps)
-    if (zipProps.zip_code === '77373') {
-      console.log(zipProps.zip_code)
-      console.log(totalStudents(zipProps))
-      console.log(zipProps)
-    }
     underserved = (underserved < 0) ? 0 : underserved
     return (
       `<div><h2 class="zipcode-tooltip">Zipcode: <span class="data-number">${zipProps.zip_code}</span></h2></div>

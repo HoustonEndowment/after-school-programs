@@ -184,6 +184,7 @@ const MainFigure = React.createClass({
               Gap Between Eligible Students and Available Program Slots
           </h2>
           {mainFigureCharts}
+          <hr className='inner'/>
         </div>
       </div>
     )
