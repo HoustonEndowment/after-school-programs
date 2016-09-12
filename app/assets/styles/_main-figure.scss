@@ -174,8 +174,7 @@
   background-color: tint($base-color, 95%);
   border-radius: $global-radius/2;
   height:10px;
-  margin-left: $global-spacing/4;
-/*  padding: $global-spacing/2;*/
+  margin-left: $global-spacing/1.6;
   .line {
     top: -12px;
     position: absolute;
@@ -211,4 +210,3 @@
   }
 
 }
-
