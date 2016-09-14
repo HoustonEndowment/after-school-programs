@@ -40,13 +40,27 @@ body {
 }
 
 .footer {
+  font-size: 0.875rem;
   padding: ($global-spacing * 4) ($global-spacing * 2);
   @include col(9/12);
+  @include media (medium-up){
+    @include col(11/12);
+  }
 }
 
 .footer-sources {
-  @include col(12/12);
+  @include col(11/12);
   font-size: 0.875rem;
+  @include media(medium-up){
+    @include col(4/12);
+  }
+}
+
+.footer-notes {
+  @include col(11/12);
+  @include media(medium-up){
+    @include col(7/12);
+  }
 }
 
 

@@ -22,6 +22,15 @@ a {
   }
 }
 
+.secondary-link {
+  font-size: 0.675rem;
+  text-decoration: none;
+  color: tint($base-color, 60%);
+  &:hover {
+    color: tint($base-color, 80%);
+  }
+}
+
 /* Lead
    ========================================================================== */
 
@@ -54,6 +63,21 @@ ol {
 
 dl {
   font-family: $base-font-family;
+}
+
+.footer {
+  dt {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+    color: $base-color;
+    font-weight: 700;
+    color: tint($base-color, 40%);
+  }
+  dd {
+    color: tint($base-color, 50%);
+    font-size: 0.875rem;
+    margin-bottom: $global-spacing;
+  }
 }
 
 dt {

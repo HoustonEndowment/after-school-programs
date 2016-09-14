@@ -134,6 +134,7 @@ const MainFigure = React.createClass({
             <h1 className='zipcode-title'>
               Supply and Demand for {zipProps.zip_code}
             </h1>
+            <a className='secondary-link' href='#footer'>See below for full definitions of these terms</a>
             <section className='main-stats'>
               <dl className='dl-horizontal'>
                 <dt className='fam-below-poverty data-number'>
