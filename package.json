@@ -4,7 +4,7 @@
   "description": "Geospatial visualizations of the supply and demand of after school programs in Houston, Texas.",
   "repository": {
     "type": "git",
-    "url": "https://github.com/developmentseed/houston-after-school.git"
+    "url": "https://github.com/HoustonEndowment/after-school-programs.git"
   },
   "author": {
     "name": "Development Seed",

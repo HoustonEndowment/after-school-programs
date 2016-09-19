@@ -1,39 +1,32 @@
 language: node_js
 node_js:
-  - "4"
-
+- '4'
 env:
   global:
   - CXX=g++-4.8
   - DEPLOY_BRANCH=master
-  - secure: aJnbiIC1tRcWyG43blY1hRHIGaa8GYEFnJSyRb2KW2uHL0ga7cYY26PSg8wVhW9qpVZI8PkivQrJz0aoPBt35NcFk7+pSBTVkbKCbyCBenDxjFDG80/HMROf3fUpmF9PSU722Ib+TLALaPfPXCXbycyC3r51EA84kWtEy+pX66bVMEITOfo13FECwJ7lYmRoKxBaGmAvwDZ1R2HaAFJjTwIeGxi2rezzWukLZSWU0HRrmWF7OdLz+9JXFkQdkBR2eH/yLFq/cAIePFKpKCETkkq9BYgd+G8ATcUh7K9M1irh3FoiXU/yoGBt07XMzNsTz0+xbPloQp5B2kREujcY1Wjz2CFMZLA+JFVG3BEZ2mb21+RL8HT7JhOZCEJBLlPKfmdsidi7b8l+ZY+uB08FbS4B2r6oDcvYfznMo71UiS3x41hNDWmZBxSOs5wBlx3Jc8mFvTUtWMBbsQWLC+NozCcDrCHW16eDD63XrMYdWw9VrxjrYS9QhqrPzVByxmaqk9SFEwQQvpNNEK1Dfvl10oYZWFMDMQClrGbLF6ZcfrBr9/2Befnea9x8UXOHs9rBlMdGI8xuWG+mqa65yxdEi6nvKS4d3hF4+B+YwJ5nyCoLu7Jqo81WOhX3GqlalvwZ3IbUMTjtJ0IzbBQyL1bmOWIUv1CzPXdHmWJq9ayQAlQ=
-
+  - secure: g+dxH97BqFQEbuyaA4TnRJ961sVBiaoHBfd9iN3sMXuBZ5lTz7aeppH1V/bC2HH4H3/jTQQbn4gxVPeSyPSPIdVYgfAgQ1NebQ3gmZjoDroLPubSSvpChIV8tLJaCZIbq4LBmgm0BsJ90HMwGz6q9sid11jlYMYyAY0pCfshj8HK9MmLWleaUlWtaTecgZ1UvkmDV8/JZpRcdJ6OXbbhJiwqun15ieAcS7bpzS9XaVEEzlFQdDLcgNO0MZk+xtJl6jFA7L1lMfuTxSRbRA7WpAxzyAlLWu0ZT2XjVgpOCm38kehipV6F5s7ABgqYBLKaF80CaIqtlMQh07aze62/pfZPR8nB1OAvm7K4F3TfWw+s3tHPSLfcrK64vNmBTHHPdGMlG7n43n+f0hWDfNYd1tUS8fTW+u5s2GHjmnr19Yq4X4B6FmDqqXM0HEFG8LO01pLvGWNA5WD6sptlEMruyq+qzWwV+zpp+eVqKRkrXxE/u7qKwRVahkrzC+FM52M++zbWD8/6DS2u/G+jYSoMkYl7p+1QEayCyLww1OjDLRG7lNS1bweU1OdzwcOolv3zxlf6SNzKb8FM1UfAtuvxEagKW4jlRkr452I7ZhH21UQhkp5SgDpb6yWWC4vrc7O+XsS/fv8vX8/GagimQF9BBdgruJFe4zx1TCw/+DFpTCo=
 addons:
   apt:
     sources:
-      - ubuntu-toolchain-r-test
+    - ubuntu-toolchain-r-test
     packages:
-      - g++-4.8
-
+    - g++-4.8
 cache:
   apt: true
   directories:
-    - node_modules
-
+  - node_modules
 before_install:
 - chmod +x ./.build_scripts/deploy.sh
 - chmod +x ./.build_scripts/lint.sh
-
 before_script:
-- ./.build_scripts/lint.sh
+- "./.build_scripts/lint.sh"
 - npm test
-
 script:
 - npm run build
-
 deploy:
   provider: script
   skip_cleanup: true
-  script: .build_scripts/deploy.sh
+  script: ".build_scripts/deploy.sh"
   on:
-    branch: ${DEPLOY_BRANCH}
+    branch: "${DEPLOY_BRANCH}"
