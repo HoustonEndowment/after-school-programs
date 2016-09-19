@@ -264,12 +264,24 @@ blockquote {
 .header {
   .heading-alt {
     background-color: $primary-color;
+    font-size: 0.875rem;
+  font-family: $base-font-family;
+  line-height: 0;
+  padding: $global-spacing;
+  color: $base-color-light;
+  display: inline-block;
   }
 }
 
 .footer {
   .heading-alt {
     background-color: $secondary-color;
+    font-size: 0.875rem;
+  font-family: $base-font-family;
+  line-height: 0;
+  padding: $global-spacing;
+  color: $base-color-light;
+  display: inline-block;
   }
 }
 

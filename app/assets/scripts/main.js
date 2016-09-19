@@ -25,7 +25,6 @@ import Map from './components/map'
 import SideBar from './components/sidebar'
 import Header from './components/header'
 import Footer from './components/footer'
-import Legend from './components/legend'
 
 const App = React.createClass({
   render: function () {
@@ -33,7 +32,6 @@ const App = React.createClass({
       <div className='app'>
         <Header />
         <div className='content'>
-          <Legend />
           <Map />
           <SideBar />
         </div>

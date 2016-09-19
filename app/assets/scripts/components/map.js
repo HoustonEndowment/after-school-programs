@@ -21,10 +21,10 @@ const Map = React.createClass({
     }
     this.mapData = this.props.mapData
     this.mapCenter = centerpoint(this.mapData).geometry.coordinates
-    mapboxgl.accessToken = 'pk.eyJ1IjoiYXNjYWxhbW9nbmEiLCJhIjoiM29weEZXayJ9.0Wpp3KbmiRcR_0YCFktCow'
+    mapboxgl.accessToken = 'pk.eyJ1IjoiY29sbGFiY29tbXVuaWNhdGlvbnMiLCJhIjoiY2l0YTZ3cHdoMDA2ZjJzbzZraDBkZXlncSJ9.MpIEbTfjbW9Ekq6alcZjWw'
     const map = this._map = new mapboxgl.Map({
       container: 'map',
-      style: 'mapbox://styles/ascalamogna/cisrq5dhg004p2xvrilk14hyx',
+      style: 'mapbox://styles/collabcommunications/cita7jiol000x2iry9pmmtd73',
       center: this.mapCenter,
       zoom: this.zoom,
       minZoom: 2,
@@ -99,10 +99,7 @@ const Map = React.createClass({
       'source': id,
       'filter': filter,
       'paint': {
-        'fill-color': {
-          property: 'slots_students_ratio',
-          stops: scale
-        },
+        'fill-color': 'rgba(222,122,0,0.7)',
         'fill-opacity': 1,
         'fill-outline-color': 'white'
       }
@@ -136,13 +133,11 @@ const Map = React.createClass({
   },
 
   _generateTooltip: function (zipProps) {
-    let underserved = totalStudents(zipProps) - totalSlots(zipProps)
-    underserved = (underserved < 0) ? 0 : underserved
     return (
       `<div><h2 class="zipcode-tooltip">Zipcode: <span class="data-number">${zipProps.zip_code}</span></h2></div>
         <div class="students-count">
-          <span class="data-number">${underserved}</span>
-          <span class="data-description">underserved students</span>
+          <p class="data-number">${totalStudents(zipProps)}<span class="data-description"> students</span></p>
+          <p class="data-number">${totalSlots(zipProps)}<span class="data-description"> total program slots</span></p>
         </div>`
     )
   },
