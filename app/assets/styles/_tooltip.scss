@@ -9,8 +9,11 @@
   	padding-bottom: $global-spacing/2;
   }
   .students-count {
-  	padding-bottom: $global-spacing/2;
+  	padding-bottom: $global-spacing/4;
   	margin-top: 0;
+    p {
+      margin-bottom: 0;
+    }
   }
   .data-number {
   	font-size: 1rem;

@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import Chart from 'chart.js'
-import chroma from 'chroma-js'
 
 import { chartOptions } from '../constants'
 
@@ -25,7 +24,6 @@ const PointChart = React.createClass({
       this.metrics.map((metrics) => {
         const totalSlots = metrics.total_slots
         const totalStudents = metrics.total_students
-        const needIndex = metrics.need_index
 
         if (totalSlots > highestSlots) highestSlots = totalSlots
         if (totalStudents > highestStudents) highestStudents = totalStudents
@@ -34,8 +32,8 @@ const PointChart = React.createClass({
           label: metrics.zip_code,
           data: [{x: totalSlots, y: totalStudents, r: 5}],
           hoverRadius: 0,
-          backgroundColor: this._setDotColor(needIndex),
-          hoverBackgroundColor: this._setDotColor(needIndex)
+          backgroundColor: 'rgba(222,122,0,0.7)',
+          hoverBackgroundColor: 'rgba(222,122,0,0.7)'
         }
       })
     }
@@ -58,21 +56,6 @@ const PointChart = React.createClass({
       this._highlightChart(zipCode)
     } else {
       this._unhighlightChart()
-    }
-  },
-
-  _setDotColor: function (needIndex) {
-    let inactiveScale = chroma.scale(['rgb(246, 209, 164)', 'rgb(222, 122, 0)'])
-    if (needIndex <= 65) {
-      return inactiveScale(1).hex()
-    } else if (needIndex > 65 && needIndex <= 73.5) {
-      return inactiveScale(0.75).hex()
-    } else if (needIndex > 73.5 && needIndex <= 82) {
-      return inactiveScale(0.5).hex()
-    } else if (needIndex > 82 && needIndex <= 90.5) {
-      return inactiveScale(0.25).hex()
-    } else {
-      return inactiveScale(0).hex()
     }
   },
 
