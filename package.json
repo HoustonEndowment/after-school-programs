@@ -10,11 +10,7 @@
     "name": "Development Seed",
     "url": "https://developmentseed.org"
   },
-  "license": "BSD-2-Clause",
-  "bugs": {
-    "url": "https://github.com/developmentseed/houston-after-school/issues"
-  },
-  "homepage": "https://github.com/developmentseed/houston-after-school",
+  "license": "MIT",
   "scripts": {
     "postinstall": "[ -f app/assets/scripts/config/local.js ] || echo 'module.exports = {}' > app/assets/scripts/config/local.js",
     "serve": "DS_ENV=development gulp serve",
