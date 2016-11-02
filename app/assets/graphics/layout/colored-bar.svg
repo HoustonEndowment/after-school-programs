@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="1215px" height="10px" viewBox="0 0 1215 10" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 39.1 (31720) - http://www.bohemiancoding.com/sketch -->
+    <title>colored-bar</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="colored-bar">
+            <g id="Page-1">
+                <g id="colored-bar">
+                    <g id="Welcome">
+                        <g id="zipcode-all-v3">
+                            <g id="Group-4" transform="translate(607.500000, 5.000000) scale(1, -1) translate(-607.500000, -5.000000) ">
+                                <rect id="Rectangle-50" fill="#AE2B30" x="0" y="0" width="202.90099" height="10"></rect>
+                                <rect id="Rectangle-50" fill="#6E4E67" x="202.09901" y="0" width="202.90099" height="10"></rect>
+                                <rect id="Rectangle-50" fill="#77A748" x="405" y="0" width="202.90099" height="10"></rect>
+                                <rect id="Rectangle-50" fill="#E89025" x="607.09901" y="0" width="202.90099" height="10"></rect>
+                                <rect id="Rectangle-50" fill="#2B6775" x="810" y="0" width="202.90099" height="10"></rect>
+                                <rect id="Rectangle-50" fill="#3DA1A4" x="1012.09901" y="0" width="202.90099" height="10"></rect>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
